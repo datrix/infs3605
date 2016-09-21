@@ -1,0 +1,13 @@
+{% for field in form %}
+{{form.media}}
+<div id="div_{{ field.html_name }}" class="form-group{% if field.errors %} has-error{% endif %}">
+  {{ field.label_tag }} {{ field }}
+  <div class="text-muted pull-right">
+    <small>{{ field.help_text }}</small>
+  </div>
+  <div class="help-block">
+    {{ field.errors }}
+  </div>
+</div>
+
+{% endfor %}

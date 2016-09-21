@@ -1,0 +1,20 @@
+{% extends "base1.html" %} {% load staticfiles %}
+{% load i18n %}
+
+{% block student_active %} active {% endblock student_active %}
+
+{% block content %}
+
+<div>
+  <br>
+  <h1>
+    List of Students
+  </h1>
+    <a href ="/student/newStudent" class="btn btn-primary"> {% trans 'New Student' %} </a> 
+  <ul>
+    {%for Student in all_students %}
+    <ul><a href="/student/{{Student.zID}}"> {{Student.zID}} {{Student.f_name}} {{Student.l_name}}</a></ul>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock content %}

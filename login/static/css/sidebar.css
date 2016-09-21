@@ -1,0 +1,92 @@
+/* Sidebar */
+#sidebar-wrapper{
+	z-index: 1;
+	position: absolute;
+	width: 0;
+	height: 100%;
+	overflow-y: hidden; /*content that goes beyond the sidebar doesn't pop out on the screen */
+	background-color: #166696;
+	border-right: 3px #186ca1 solid;
+	width: 250px;
+	transition: 0.7s;
+}
+
+
+/* main content (area on the right) */
+#page-content-wrapper{
+	width: 100%;
+	position: absolute;
+	border: 5px;
+	padding-top: 0px;
+	padding-left: 250px;
+	transition: 0.7s;
+}
+
+/* change the width of the sidebar to display it */
+#wrapper.menuNotDisplayed #sidebar-wrapper{
+	width: 0px;
+	border-right: 3px #186ca1 solid;
+}
+
+/* this is shifting the main content to the left when the sidebar is open*/
+#wrapper.menuNotDisplayed #page-content-wrapper{
+	padding-top: 0px;
+	padding-left: 0px;
+}
+
+
+
+.sidebar-nav{
+	padding: 10px 0px 0px 0px;
+	list-style: none;]
+
+}
+#AlertSidebar{
+	text-align: left;
+	text-indent: 40px;
+	height:30px;
+	color: white;
+	font-weight: 200;
+	font-size: 15px
+
+}
+
+.sidebar-nav li{
+	margin-bottom: 2px;
+	margin-right: 3px;
+	text-indent: 10px;
+	line-height: 40px;
+	background-color: #1e87c8;
+}
+
+.sidebar-nav li a{
+	display: block; /* stack on top of eachother rather than like a paragraph */
+	text-decoration: none;
+	color: white;
+}
+
+.sidebar-nav > li > a:hover, .sidebar-nav > li > a:focus {
+    background-color: #bcdff5;
+    color: #0c3953;
+}
+
+#sidebar-today{
+	color: white;
+	text-indent: 37px;
+	line-height: 15px;
+	text-align: left;
+	border: 2px;
+	padding-bottom: 10px;
+	font-size: 15px;
+}
+
+
+
+#sidebar-today-below{
+	background-color: #bcdff5;
+	height: 100%;
+	margin-left: 5px;
+	margin-right: 5px;
+	border: 0px;
+	border-color: #114b6f ;
+}

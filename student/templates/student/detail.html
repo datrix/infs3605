@@ -1,0 +1,27 @@
+{% extends "base1.html" %} {% load staticfiles %}
+
+{% block student_active %} active {% endblock student_active %}
+
+{% block content %}
+
+<div>
+  <br>
+  <h1>
+    Name of Student: {{Student.f_name}} {{Student.l_name}}
+  </h1>
+  <h2>
+    Student zID: {{Student.zID}} 
+  </h2>
+  <h4>
+    <ul>
+      Email: {{Student.email}}
+    </ul>
+    <ul>
+      Degree: {{Student.degree}}
+    </ul>
+    <ul>
+      Start Year: {{Student.startYear}}
+    </ul>
+  </h4>
+</div>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% load staticfiles i18n %}
+{% load staticfiles %}
+{% load bootstrap_calendar %}
+
+
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	    <title>INFS3605</title>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	   
+			{% block css %}
+			{% bootstrap_calendar_css %}
+			{% endblock %}
+			
+			<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+	    <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+		 
+      {% block head %}
+      {% endblock %}
+			
+			{% block angular %}
+		  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+			{% endblock %}
+			<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+	    
+
+	    
+	        <!-- Bootstrap Core CSS FOR OFFLINE
+    	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    	<script src="js/bootstrap.min.js"></script> -->
+
+
+	</head>
+	
+	<body>
+
+	<div class="top">
+		<div class="row" id="UNSWlogo">
+			<div class="col-md-2">
+				<a href="#"> <img id="logo" src="{% static 'images/UNSW.png' %}"></a>
+			</div>
+			<div class="col-md-10" id="UGCIS"> <blockquote>	UGC System</blockquote></div>	
+		</div>
+
+
+		<nav class="navbar navbar-default">
+			<div id="yellowbar"> </div>
+			<div class="container-fluid">
+
+				<!-- navbar menu items -->
+				<div>
+					<ul class="nav navbar-nav" >
+						<li class = "{% block home_active %} {% endblock home_active %}"> <a href="../calendar/"> Home </a></li> <!-- active highlights the page you're on (faded tab)-->
+						<li class = "{% block student_active %} {% endblock student_active %}"> <a href="../student/" id="test"> Students </a></li>
+						<li> <a href="AlertsPage.html"> Alerts </a></li>
+						<!-- drop down for reports -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="ReportsAppointmentsPage.html">By Appointments</a></li>
+								<li><a href="#">By Students</a></li>
+								
+							</ul>	
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li> <a href="{% url 'django.contrib.auth.views.logout'%}" id="logout" > Logout </a></li> 
+						{% csrf_token %}
+					</ul>
+
+
+				</div>					
+				
+			</div>
+
+		</nav>	
+<!-- START OF CALENDAR DIV (Jeff)-->
+    <div class="container">
+
+			
+      {% block content %}
+      {% endblock content %}
+
+    </div> <!-- /container -->
+    
+    {% block modal %}{% endblock modal %}
+		 <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% block javascript %}
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+			<script type="text/javascript" src="components/jstimezonedetect/jstz.min.js"></script>
+
+      <!-- Your stuff: Third-party javascript libraries go here -->
+
+      <!-- place project specific Javascript in this file -->
+      <script src="{% static 'js/underscore-min.js' %}"></script>
+      {% bootstrap_calendar_js language='en-EN' %} 
+      {% bootstrap_calendar_init language='en-EN' %}
+    {% endblock javascript %}
+		
+		</body>
+
+
+</html>

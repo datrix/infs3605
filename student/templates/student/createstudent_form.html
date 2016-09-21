@@ -1,0 +1,31 @@
+{% extends "base1.html" %} {% load staticfiles %}
+
+{% block student_active %} active {% endblock student_active %}
+
+{% block head %}
+{{ form.media }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class = "span3">
+ <h1>
+   Create Student
+  </h1>
+</div>
+<div class = "col-sm-offset-2 col-sm-10">
+  <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+</div>
+{% csrf_token %}
+{% include 'form_template.html' %} 
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+</div>
+</form>
+
+{% endblock content %}

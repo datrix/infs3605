@@ -1,0 +1,24 @@
+{% extends "base1.html" %} {% load staticfiles %}
+
+{% block student_active %} active {% endblock student_active %}
+
+{% block content %}
+
+<div>
+  <br>
+  <h1>
+    Details of consultation: {{Consultation.title}}
+  </h1>
+  <h2>
+    Student ID and name: {{Consultation.zID}}
+  </h2>
+  <p>
+    Start time: {{Consultation.start}}
+  </p>
+  <p>
+    End time: {{Consultation.end}}
+  </p>
+  <ul>
+  </ul>
+</div>
+{% endblock %}

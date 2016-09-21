@@ -1,0 +1,83 @@
+ {% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  body {}
+</style>
+
+<head>
+  <meta charset="utf-8">
+  <title>ISTM Undergraduate Coordinator Login</title>
+
+  <!-- Google Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <img src="{% static 'images/logo.jpg'%}"></div>
+  <div id="colorstri1" /> </div>
+  <div id="colorstrip2" /> </div>
+  <div id="body" />
+  <div class="container" >
+    <div class="top">
+      <h1 id="title" class="hidden"><span id="logo"> </span></h1>
+    </div>
+    <div class="login-box" >
+      <div class="box-header">
+        <h2>Log In</h2>
+      </div>
+      {% if form.errors %}
+      <p>Your username and password didn't match. Please try again.</p>
+      {% endif %}
+
+      <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+        {% csrf_token %}
+        <table align="center">
+          <tr>
+            <td>{{ form.username.label_tag }}</td>
+          </tr>
+          <tr>
+          <td>{{ form.username }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.password.label_tag }}</td>
+          </tr>
+          <tr>
+          <td>{{ form.password }}</td>
+          </tr>
+        </table>
+
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+      </form>
+    </div>
+  </div>
+</body>
+
+<script>
+  $(document).ready(function() {
+    $('#logo').addClass('animated fadeInDown');
+    $("input:text:visible:first").focus();
+  });
+  $('#username').focus(function() {
+    $('label[for="username"]').addClass('selected');
+  });
+  $('#username').blur(function() {
+    $('label[for="username"]').removeClass('selected');
+  });
+  $('#password').focus(function() {
+    $('label[for="password"]').addClass('selected');
+  });
+  $('#password').blur(function() {
+    $('label[for="password"]').removeClass('selected');
+  });
+</script>
+
+</html>
