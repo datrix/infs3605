@@ -5,6 +5,7 @@
 {% block content %}
 
 <div>
+  <a href = "<input type=button value="Previous Page" onClick="javascript:history.go(-1);""> Return to students </a>
   <br>
   <h1>
     Name of Student: {{Student.f_name}} {{Student.l_name}}
@@ -23,5 +24,17 @@
       Start Year: {{Student.startYear}}
     </ul>
   </h4>
+</div>
+
+<div>
+  <h2>
+    All consultations:
+  </h2>
+  <ul>
+    {%for Consultation in student_consult %}
+    <a href="/calendar/{{Consultation.title}}"> {{Consultation.title}}</a> &nbsp;&nbsp;&nbsp;&nbsp;{{Consultation.start}}   &nbsp;&nbsp;&nbsp;&nbsp; {{Consultation.end}} &nbsp;&nbsp;&nbsp;&nbsp; {{Consultation.apptType}}
+        {% if not forloop.last %}<br>{% endif %} 
+    {% endfor %}
+  </ul>
 </div>
 {% endblock %}

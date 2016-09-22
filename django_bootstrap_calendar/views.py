@@ -13,10 +13,13 @@ from .models import apptType
 from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 import datetime
+  
 
-
+  
 class CalendarJsonListView(ListView):
 
     template_name = 'django_bootstrap_calendar/calendar_events.html'
@@ -44,20 +47,23 @@ class CalendarJsonListView(ListView):
         return event_serializer(queryset)
 
 
-class CalendarView(TemplateView):
-
+class CalendarView(LoginRequiredMixin, TemplateView):
+    login_url = '/login/'
+    #redirect_field_name = 'redirect_to'
     template_name = 'django_bootstrap_calendar/calendar.html'
-    
-class CreateEvent(CreateView): 
-    model = CalendarEvent, apptType
+
+class CreateEvent(LoginRequiredMixin, CreateView): 
+    login_url = '/login/'
+    model = CalendarEvent
     template_name = 'calendarevent_form.html'
     form_class = EventForm
-   
+
+      
 def detail(request, title):  
    Consultation = get_object_or_404(CalendarEvent, pk=title)
    return render(request, 'consultation.html', {'Consultation': Consultation,})
 
 
-
+  
 
 

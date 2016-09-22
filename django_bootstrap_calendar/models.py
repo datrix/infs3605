@@ -32,6 +32,7 @@ class CalendarEvent(models.Model):
     zID = models.ForeignKey(student, on_delete = models.CASCADE, null=True)
     notes = models.CharField(max_length = 400, null=True, blank=True)
     ugc = models.CharField(max_length = 100, null=True)
+    apptType = models.ForeignKey(apptType, on_delete = models.CASCADE, null=True)
 
     @property
     def start_timestamp(self):

@@ -5,6 +5,7 @@
 {% block content %}
 
 <div>
+    <a href = "<input type=button value="Previous Page" class="btn btn-primary" onClick="javascript:history.go(-1);""> Return </a>
   <br>
   <h1>
     Details of consultation: {{Consultation.title}}
@@ -17,6 +18,9 @@
   </p>
   <p>
     End time: {{Consultation.end}}
+  </p>
+  <p>
+    Appointment Type: {{Consultation.apptType}}
   </p>
   <ul>
   </ul>
