@@ -4,6 +4,11 @@ html, body{
 	padding: 0px;
 }
 
+.container{
+	padding-left:0px;
+	margin-left:0px;
+}
+
 
 /* ------ BANNER CSS ----- */
 #banner{
@@ -11,7 +16,7 @@ html, body{
 	padding-top: 25px;
 	padding-left: 20px;
 }
-#logo{
+#logo{	
 	width: 191px;
 	height: 70px;
 }

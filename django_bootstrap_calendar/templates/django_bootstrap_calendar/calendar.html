@@ -6,20 +6,73 @@
 {% block home_active %} active {% endblock home_active %}
 
 {% block content %}
-<div class="row-fluid">
-  <div class="span12">
-      {% bootstrap_controls 'from-inline pull-right' %}
-  </div>
-</div>
-<div class="clear-fix">
-</div>
-<div class="row">
-    <div class="span7">
-      {% bootstrap_calendar '' %}
+
+<div id="wrapper" style="padding-left: 0px; margin-left:0px;">
   
-    </div>
-    <div class="span3">
-        Copyright of Richard Bottom
-    </div>
+  <!-- Side bar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <div id="AlertSidebar"> Alerts </div>
+      <li> <a href="#"> <span class="glyphicon glyphicon-exclamation-sign"> </span> High Priority Follow-up </a> </li>
+      <li> <a href="#"> <span class="glyphicon glyphicon-transfer"></span> Credit Transfers </a> </li>
+      <li> <a href="#"> <span class="glyphicon glyphicon-globe"></span> International Exchange</a> </li>						
+    </ul>
+    <div id="sidebar-today"> Today's Appointments </div>
+    <div id="sidebar-today-below"></div>
+  </div>
+   
+  
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+          <div class="container-fluid" style="padding: 0px">
+            <!-- search bar etc. -->
+            <div class="row" id="rowOne">
+              <div class="col-lg-4" style="padding-left:0px;"> <!-- for making button left --> 
+                <a href="#" class="btn btn-default" id="sidebar-toggle"> <span class="glyphicon glyphicon-menu-left"> </span> </a>
+              </div>
+
+              <div class="col-lg-8" id="search-input">
+                <div class="input-group col-md-12">
+                <input type="text" class="form-control input-md" placeholder="Search for a student...">
+                <span class="input-group-btn">
+                  <button class="btn btn-info btn-md" type="button">
+                    <i class="glyphicon glyphicon-search"></i> 
+                  </button> 
+                </div>
+              </div>
+            </div>      
+          </div>
+            
+      <div class="row-fluid">
+        <div class="span12">
+            {% bootstrap_controls 'from-inline pull-right' %}
+        </div>
+      </div>
+      <div class="clear-fix"> </div>
+      <div class="row">
+          <div class="span7">
+            {% bootstrap_calendar '' %}
+
+          </div>
+          <div class="span3">
+              Copyright of Richard Bottom
+          </div>
+      </div>
+    
+  </div>
+    
+    <!-- sidebar toggle JQuery script -->
+		<script>
+			$("#sidebar-toggle").click( function (e){
+				e.preventDefault();
+				$("#wrapper").toggleClass("menuNotDisplayed"); 
+			});
+			
+		</script>
+  
+  
+  
+  
+  
 </div>
 {% endblock %}

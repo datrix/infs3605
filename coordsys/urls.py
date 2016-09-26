@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'}),
     url(r'^calendar/', include('django_bootstrap_calendar.urls')),
+    url(r'^report/', include('report.urls')), 
 ]
 
 if settings.DEBUG:

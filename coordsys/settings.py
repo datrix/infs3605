@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'apptType.apps.AppttypeConfig',
     'course.apps.CourseConfig',
     'student.apps.StudentConfig',
+    'report.apps.ReportConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +47,9 @@ INSTALLED_APPS = [
     'django_bootstrap_calendar',
     'datetimewidget',
     'bootstrap3_datetime',
+    'django_tables2',
     #'django_bootstrap_calendar_old',
+    #'django_filters',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -75,6 +78,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.core.context_processors.request',
+                'django.template.context_processors.request',
             ],
         },
     },

@@ -30,9 +30,9 @@ class CalendarEvent(models.Model):
     end = models.DateTimeField(verbose_name=_('End Time & Date'), null=True,
                                blank=True)
     zID = models.ForeignKey(student, on_delete = models.CASCADE, null=True)
-    notes = models.CharField(max_length = 400, null=True, blank=True)
-    ugc = models.CharField(max_length = 100, null=True)
-    apptType = models.ForeignKey(apptType, on_delete = models.CASCADE, null=True)
+    notes = models.CharField(max_length = 400, null=True, blank=True, verbose_name=_('Notes'))
+    ugc = models.CharField(max_length = 100, null=True, verbose_name=_('Staff'))
+    apptType = models.ForeignKey(apptType, on_delete = models.CASCADE, null=True, verbose_name=_('Appointment Type'))
 
     @property
     def start_timestamp(self):
