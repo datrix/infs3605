@@ -18,13 +18,18 @@
 <div class = "col-sm-offset-2 col-sm-10">
   <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
 </div>
-{% csrf_token %}
-{% include 'form_template.html' %} 
+<div class = "row">
+  <div class = "col-md-3">   
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-success">Submit</button>
+    {% csrf_token %}
+    {% include 'form_template.html' %} 
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-success">Submit</button>
+      </div>
     </div>
+  </div>
 </div>
 </form>
 

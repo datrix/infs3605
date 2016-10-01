@@ -15,6 +15,10 @@
     {%for Student in all_students %}
     <ul><a href="/student/{{Student.zID}}"> {{Student.zID}} {{Student.f_name}} {{Student.l_name}}</a></ul>
     {% endfor %}
+    
+    <!--{% for obj in filter.qs %}
+        <ul><a href="/student/{{obj.zID}}"> {{obj.zID}} {{obj.f_name}} {{obj.l_name}}</a></ul>
+    {% endfor %} -->
   </ul>
 </div>
 {% endblock content %}

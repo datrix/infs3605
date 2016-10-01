@@ -12,6 +12,7 @@ from django_bootstrap_calendar.models import CalendarEvent
 # Create your views here.
 
 @login_required(login_url='/login/')
+
 def index(request):
     all_students = student.objects.all()
     context = {
@@ -32,3 +33,8 @@ class CreateStudent(CreateView):
   template_name = 'student/createstudent_form.html'
   form_class = StudentForm
   
+
+def student_list(request):
+  student = StudentFilter(request.GET, queryset=student.objects.all())
+  RequestConfig(request).configure(table)
+  return render(request, 'student/student_filter.html', {'filter': student})

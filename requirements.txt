@@ -1,0 +1,17 @@
+Django==1.9.4
+argparse==1.2.1
+django-annoying==0.10.1
+django-bootstrap3==7.0.1
+django-bootstrap3-datetimepicker==2.2.3
+django-boss==0.6.3
+django-bower==5.1.0
+django-datetime-widget==0.9.3
+django-jsmin==0.2
+django-scheduler==0.8
+django-tables2==1.2.6
+icalendar==3.10
+jsmin==2.2.1
+python-dateutil==2.5.3
+pytz==2016.6.1
+six==1.10.0
+wsgiref==0.1.2

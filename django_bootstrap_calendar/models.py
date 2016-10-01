@@ -7,6 +7,7 @@ from utils import datetime_to_timestamp
 from student.models import student
 from apptType.models import apptType
 from django.contrib.auth.models import User
+import django_filters
 
 
 class CalendarEvent(models.Model):
@@ -54,3 +55,6 @@ class CalendarEvent(models.Model):
 class consultType(models.Model):
   title = models.ForeignKey(CalendarEvent, on_delete = models.CASCADE, null = True)
   apptType = models.ForeignKey(apptType)
+  
+  
+  

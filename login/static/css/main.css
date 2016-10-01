@@ -127,6 +127,12 @@ html, body{
 
 
 
+.row{
+	margin-left: 0px;
+}
+
+
+
 /*.page-content {
 	height: 100%;	
 } */

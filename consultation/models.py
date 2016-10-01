@@ -1,12 +1,10 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from student.models import student
 #from apptType.models import apptType
 
 class consultation(models.Model):
   cID = models.AutoField(primary_key = True)
-  zID = models.ForeignKey(student, on_delete = models.CASCADE, null = True)
   sTime = models.DateTimeField()
   fTime = models.DateTimeField()
   priority = models.CharField(max_length = 6, default = 'medium' )

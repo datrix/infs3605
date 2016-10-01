@@ -14,7 +14,4 @@ def index(request):
 def consultations(request):
   table = ConsultationTable(CalendarEvent.objects.all())
   RequestConfig(request).configure(table)
-  context={
-    'all_consultations': table
-  }
-  return render(request, 'consultationReport.html', context)
+  return render(request, 'consultationReport.html', {'all_consultations': table })

@@ -48,9 +48,11 @@ INSTALLED_APPS = [
     'datetimewidget',
     'bootstrap3_datetime',
     'django_tables2',
-    #'django_bootstrap_calendar_old',
-    #'django_filters',
+    'django_filters',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

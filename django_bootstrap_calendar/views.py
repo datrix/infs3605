@@ -57,13 +57,16 @@ class CreateEvent(LoginRequiredMixin, CreateView):
     model = CalendarEvent
     template_name = 'calendarevent_form.html'
     form_class = EventForm
-
       
 def detail(request, title):  
    Consultation = get_object_or_404(CalendarEvent, pk=title)
    return render(request, 'consultation.html', {'Consultation': Consultation,})
 
-
+#class CreateEvent(LoginRequiredMixin, EditView):
+ #   login_url = '/login/'
+  #  model = CalendarEvent
+   # template_name = 'calendarevent_form.html'
+    #form_class = EventForm
   
 
 

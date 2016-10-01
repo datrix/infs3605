@@ -1,3 +1,7 @@
+<!--{% load crispy_forms_tags %}
+{{form|crispy}}
+-->
+
 {% for field in form %}
 {{form.media}}
 <div id="div_{{ field.html_name }}" class="form-group{% if field.errors %} has-error{% endif %}">
