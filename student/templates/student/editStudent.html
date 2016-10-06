@@ -13,22 +13,10 @@
 {% endblock %}
 
 {% block content %}
-<div class = "span3">
- <h1>
-   Create Consultation
-  </h1>
-</div>
-<div class = "col-sm-offset-2 col-sm-10">
-  <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
-</div>
-{% csrf_token %}
-{% include 'form_template.html' %} 
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-success">Submit</button>
-    </div>
-</div>
+<form action="" method="post">{% csrf_token %}
+  {{student.zID}}  
+  {{ form.as_p }}
+    <input type="submit" value="Update" />
 </form>
 
 {% endblock content %} 

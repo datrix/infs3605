@@ -1,11 +1,21 @@
-{% extends "base1.html" %} {% load staticfiles %}
+{% extends "base1.html" %} 
+{% load static %}
+{% load crispy_forms_tags %}}
+{% load render_table from django_tables2 %}
 
 {% block student_active %} active {% endblock student_active %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+<link rel="stylesheet" href="{% static 'django_tables2/bootstrap.css' %}" />
+{% endblock head %}
 
 {% block content %}
 
 <div>
-  <a href = "<input type=button value="Previous Page" onClick="javascript:history.go(-1);""> Return to students </a>
+  <br>
+ <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left" <a href = "< input type=button value="Previous Page" onClick="javascript:history.go(-1);"  ""> </a>
+</button>
   <br>
   <h1>
     Name of Student: {{Student.f_name}} {{Student.l_name}}
@@ -23,6 +33,9 @@
     <ul>
       Start Year: {{Student.startYear}}
     </ul>
+    <a href = "/student/{{Student.zID}}/courses_taken">
+      Previous and current courses undertaken
+    </a>
   </h4>
 </div>
 
@@ -30,11 +43,8 @@
   <h2>
     All consultations:
   </h2>
-  <ul>
-    {%for Consultation in student_consult %}
-    <a href="/calendar/{{Consultation.title}}"> {{Consultation.title}}</a> &nbsp;&nbsp;&nbsp;&nbsp;{{Consultation.start}}   &nbsp;&nbsp;&nbsp;&nbsp; {{Consultation.end}} &nbsp;&nbsp;&nbsp;&nbsp; {{Consultation.apptType}}
-        {% if not forloop.last %}<br>{% endif %} 
-    {% endfor %}
-  </ul>
-</div>
+
+  {% render_table student_consult %} 
+
+</div> 
 {% endblock %}

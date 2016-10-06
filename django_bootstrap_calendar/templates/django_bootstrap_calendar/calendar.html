@@ -1,41 +1,40 @@
-{% extends 'base1.html' %} 
-{% load i18n %}
-{% load bootstrap_calendar %}
-{% load staticfiles i18n %}
-
-{% block home_active %} active {% endblock home_active %}
-
-{% block content %}
+{% extends 'base1.html' %}  {% load bootstrap_calendar %} {% load i18n %}{% load staticfiles i18n %} {% block home_active %} active {% endblock home_active %} {% block content %}
 
 <div id="wrapper">
-  
-  <!-- Side bar -->
-  <div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-      <div id="AlertSidebar"> Alerts </div>
-      <li> <a href="#"> <span class="glyphicon glyphicon-exclamation-sign"> </span> High Priority Follow-up </a> </li>
-      <li> <a href="#"> <span class="glyphicon glyphicon-transfer"></span> Credit Transfers </a> </li>
-      <li> <a href="#"> <span class="glyphicon glyphicon-globe"></span> International Exchange</a> </li>						
-    </ul>
-    <div id="sidebar-today"> Today's Appointments </div>
-    <div id="sidebar-today-below"></div>
-  </div>
-  
-   
-  
-  <!-- Page Content -->
-  <div id="page-content-wrapper">
-          <div class="container-fluid" style="padding-left: 0px;">
-            <!-- search bar etc. -->
-            <div class="row" id="rowOne">
-              <div class="col-lg-4" style="padding-left:0px;"> <!-- for making button left --> 
-                <a href="#" class="btn btn-default" id="sidebar-toggle"> <span class="glyphicon glyphicon-menu-left"> </span> </a>
-              </div>
 
-              <div class="col-lg-8" id="search-input">
-                <div class="input-group col-md-12">
-                <input type="text" class="form-control input-md" placeholder="Search for a student...">
-                <span class="input-group-btn">
+	<!-- Side bar -->
+	<div id="sidebar-wrapper">
+		<ul class="sidebar-nav">
+			<div id="AlertSidebar"> Alerts </div>
+			<li>
+				<a href="#"> <span class="glyphicon glyphicon-exclamation-sign"> </span> High Priority Follow-up </a>
+			</li>
+			<li>
+				<a href="#"> <span class="glyphicon glyphicon-transfer"></span> Credit Transfers </a>
+			</li>
+			<li>
+				<a href="#"> <span class="glyphicon glyphicon-globe"></span> International Exchange</a>
+			</li>
+		</ul>
+		<div id="sidebar-today"> Today's Appointments </div>
+		<div id="sidebar-today-below"></div>
+	</div>
+
+
+	<!-- Page Content -->
+	<div id="page-content-wrapper">
+		<div class="container-fluid" style="padding: 0px;">
+			<!-- search bar etc. -->
+			<div class="row" id="rowOne">
+				<div class="col-lg-4" style="padding-left:0px;">
+					<!-- for making button left -->
+					<!--<a href="#" class="btn btn-default" id="sidebar-toggle"> <span class="glyphicon glyphicon-menu-left"> </span> </a>-->
+				</div>
+
+				<div class="col-lg-8" id="search-input">
+					<div class="input-group col-md-12">
+						<input type="text" class="form-control input-md" placeholder="Search for a student...">
+						<span class="input-group-btn">
                   <button class="btn btn-info btn-md" type="button">
                     <i class="glyphicon glyphicon-search"></i> 
                   </button> 
@@ -47,7 +46,7 @@
                   <div class="span12"> {% bootstrap_controls 'from-inline pull-right' %} </div>
                 </div>
                 <div class="clear-fix"> </div>
-                <div class="row" style="margin 0px;">
+                <div class="row" style="margin-left: 75px; margin-right:20px;">
                     <div class="row" style="margin: 0px;"> {% bootstrap_calendar '' %} </div>
                 </div>
               

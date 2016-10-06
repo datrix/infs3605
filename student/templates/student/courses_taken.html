@@ -1,0 +1,14 @@
+{% extends "base1.html" %} 
+{% load static %}
+{% load crispy_forms_tags %}}
+{% load render_table from django_tables2 %}
+
+{% block student_active %} active {% endblock student_active %}
+
+{% block content %}
+<h1>
+  This is courses taken page
+</h1>
+
+{% render_table course_taken %}
+{% endblock %}

@@ -5,7 +5,7 @@ from django.views.generic import ListView, TemplateView
 from models import CalendarEvent
 from serializers import event_serializer
 from utils import timestamp_to_datetime
-from .forms import EventForm #new event form 
+from .forms import EventForm, EditEventForm #new event form 
 from django.views.generic import View #view new event form -- (don't think we need this)
 from django.views.generic.edit import CreateView, UpdateView, DeleteView 
 from .models import CalendarEvent
@@ -15,6 +15,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.utils import timezone
+
 
 import datetime
   
@@ -57,10 +59,24 @@ class CreateEvent(LoginRequiredMixin, CreateView):
     model = CalendarEvent
     template_name = 'calendarevent_form.html'
     form_class = EventForm
+
+
+class EditEvent(LoginRequiredMixin, UpdateView):
+    login_url = '/login/'
+    form_class = EditEventForm
+    #model = CalendarEvent 
+    #fields = ['title', 'css_class', 'start', 'end', 'zID', 'apptType', 'ugc']
+    template_name= 'editEvent.html'
       
+    def get_object(self, queryset=None):
+      eventObj = CalendarEvent.objects.get(pk=self.kwargs['title'])
+      
+      return eventObj
+    
 def detail(request, title):  
-   Consultation = get_object_or_404(CalendarEvent, pk=title)
-   return render(request, 'consultation.html', {'Consultation': Consultation,})
+    Consultation = get_object_or_404(CalendarEvent, pk=title)
+    return render(request, 'consultation.html', {'Consultation': Consultation,})
+    
 
 #class CreateEvent(LoginRequiredMixin, EditView):
  #   login_url = '/login/'

@@ -16,11 +16,11 @@ class degree(models.Model):
     return str(degree.degreeCode) + " - " + str(degree.degreeName)
   
 class student(models.Model):
-  zID = models.CharField(max_length = 8, primary_key = True)
+  zID = models.CharField(verbose_name=('zID'), max_length = 8, primary_key = True)
   f_name = models.CharField(verbose_name=('First Name'), max_length = 50)
   l_name = models.CharField(verbose_name=('Last Name'), max_length = 50)
   email = models.CharField(verbose_name=('E-mail Address'), max_length = 100)
-  degreeCode = models.ForeignKey(degree, on_delete = models.CASCADE, null=True)
+  degreeCode = models.ForeignKey(degree, verbose_name=('Degree Code'),on_delete = models.CASCADE, null=True)
   startYear = models.IntegerField(verbose_name=('Year Started'))
   
   def getYear(self):
@@ -32,14 +32,21 @@ class student(models.Model):
 class enrol(models.Model):
   zID = models.ForeignKey(student, on_delete = models.CASCADE, null = True)
   course_old = models.ForeignKey(course, related_name = 'course_old', null = True)
-  course_new = models.ForeignKey(course, related_name = 'course_new', null = True)    
+  course_new = models.ForeignKey(course, related_name = 'course_new', null = True)
   
   def __str__(enrol):
     return str(enrol.zID) + '------- Previous Course: ' + str(enrol.course_old) + '------- Current Course: ' + str(enrol.course_new) 
 
+  
 class StudentFilter(django_filters.FilterSet):
-  zID = django_filters.CharFilter(lookup_expr = 'icontains')
+  zID = django_filters.CharFilter(name='zID', lookup_expr = 'icontains')
+  First_name = django_filters.CharFilter(name='f_name', lookup_expr = 'icontains')
+  Last_name = django_filters.CharFilter(name='l_name', lookup_expr = 'icontains')
+  email = django_filters.CharFilter(name='email', lookup_expr = 'icontains')
+  Degree_code = django_filters.NumberFilter(name='degreeCode')
+  Start_year = django_filters.RangeFilter(name='startYear')
   
   class Meta:
     model = student
+    fields = ['zID']
     

@@ -1,12 +1,18 @@
 html, body{
-	height: 100px;
+	/*height: 100px;*/
 	margin: 0px;
 	padding: 0px;
 }
 
+
 .container{
-	padding-left:0px;
-	margin-left:0px;
+	/*padding-left:0px;*/
+	/*margin-left:0px; */
+	}
+
+#mainContainer{
+	padding: 0px;
+	margin: 0px;
 }
 
 
@@ -129,7 +135,17 @@ html, body{
 
 .row{
 	margin-left: 0px;
+	margin-right: 0px;
 }
+
+
+
+/*  Calendar CSS */
+.btncal{
+	border-radius: 0px;
+	backbround-color:white;
+}
+
 
 
 

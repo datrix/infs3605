@@ -3,6 +3,12 @@ class*="cal-cell"] {
   margin-left: 0;
   min-height: 1px;
 }
+
+.btn-warning{
+ border-radius:0px; 
+}
+
+
 .cal-row-fluid {
   width: 100%;
   *zoom: 1;

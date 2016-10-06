@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.auth.views import login, logout
 #from django.contrib.auth.decorators import login_required, permission_required
 #from django.views.generic import TemplateView
 
@@ -25,8 +26,10 @@ urlpatterns = [
     url(r'^student/', include('student.urls'), name='student'),
     url(r'^consultation/', include('consultation.urls')),
     url(r'^course/', include('course.urls')),
-    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'}),
+    url(r'^login/$', login, {'template_name': 'login.html'}),
+    url(r'^logout/$', logout, {'next_page': '/login/'}),
+    #url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),
+    #url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'}),
     url(r'^calendar/', include('django_bootstrap_calendar.urls')),
     url(r'^report/', include('report.urls')), 
 ]

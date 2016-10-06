@@ -3,7 +3,7 @@
 	z-index: 1;
 	position: absolute;
 	width: 0;
-	height: 100%;
+	height: 800px;
 	overflow-y: hidden; /*content that goes beyond the sidebar doesn't pop out on the screen */
 	background-color: #166696;
 	border-right: 3px #186ca1 solid;
@@ -42,12 +42,13 @@
 
 
 #AlertSidebar{
+	padding-top: 4px;
 	text-align: left;
 	text-indent: 40px;
-	height:30px;
-	color: white;
+	height:35px;
+	color: #8ab3ca;
 	font-weight: 200;
-	font-size: 15px
+	font-size: 13px;
 
 }
 
@@ -71,13 +72,14 @@
 }
 
 #sidebar-today{
-	color: white;
+	color: #8ab3ca	;
 	text-indent: 37px;
 	line-height: 15px;
 	text-align: left;
 	border: 2px;
-	padding-bottom: 10px;
-	font-size: 15px;
+	padding-top:5px;
+	padding-bottom: 12px;
+	font-size: 13px;
 }
 
 
