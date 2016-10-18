@@ -1,50 +1,67 @@
-{% extends "base1.html" %} 
-{% load static %}
-{% load crispy_forms_tags %}}
-{% load render_table from django_tables2 %}
-
-{% block student_active %} active {% endblock student_active %}
-
-{% block head %}
+{% extends "base1.html" %} {% load static %} {% load crispy_forms_tags %}} {% load render_table from django_tables2 %} {% block student_active %} active {% endblock student_active %} {% block head %}
 <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
-<link rel="stylesheet" href="{% static 'django_tables2/bootstrap.css' %}" />
-{% endblock head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+<link rel="stylesheet" href="{% static 'django_tables2/bootstrap.css' %}" /> {% endblock head %} {% block content %}
 
-{% block content %}
+
+
+<div class="col-sm-offset-2 ">
+  <!--not sure why but this div restores harmony to the padding of this page-->
+</div> 
+<br>
+<div class="col-md-12">
+  <div class="container" id="AllEditStudentButtons">
+    <div id="EditStudentBackButton" >
+      <button type="button" class="btn btn-default glyphicon glyphicon-chevron-left" 
+        <a href="< input type=button value=" Previous Page " onClick="javascript:history.go(-1); "  " " > </a>
+      </button>  
+    </div>
+    <div id="EditStudentButtons">
+      <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Consultation Page" onClick="window.location.href='/calendar/newevent' "  " "> </a></button>
+      <button type="button " class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Page" onClick="window.location.href='/student/{{Student.zID}}/edit'" ""> </a></button>
+    </div>
+  </div>
+
+<table id="NameZID">
+   <tr>
+     <td><h3>Name:</h3></td>
+     <td><h3>{{Student.f_name}} {{Student.l_name}}</h3></td>
+     <td></td>
+     <td><h3>zID:</h3></td>
+     <td><h3>{{Student.zID}}</h3></td>
+   </tr>
+</table>
+<hr>
+
+<table id="StudentInfo" >
+       <tr>
+         <td><b>Email: </b></td>
+         <td>{{Student.email}}</td>
+       </tr>
+       <tr>
+         <td><b>Degree: </b></td>
+         <td>{{Student.degreeCode}}</td>
+       </tr>
+       <tr>
+         <td><b>Year Commenced: </b></td>
+         <td>{{Student.startYear}}</td>
+       </tr>
+    </table>
+    <br>
+    <hr>
+
+    <a href = "/student/{{Student.zID}}/courses_taken "><h4>
+       Previous and current courses undertaken
+      </h4></a>
 
 <div>
-  <br>
- <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left" <a href = "< input type=button value="Previous Page" onClick="javascript:history.go(-1);"  ""> </a>
-</button>
-  <br>
-  <h1>
-    Name of Student: {{Student.f_name}} {{Student.l_name}}
-  </h1>
-  <h2>
-    Student zID: {{Student.zID}} 
-  </h2>
-  <h4>
-    <ul>
-      Email: {{Student.email}}
-    </ul>
-    <ul>
-      Degree: {{Student.degreeCode}}
-    </ul>
-    <ul>
-      Start Year: {{Student.startYear}}
-    </ul>
-    <a href = "/student/{{Student.zID}}/courses_taken">
-      Previous and current courses undertaken
-    </a>
-  </h4>
-</div>
-
-<div>
-  <h2>
+  <h3>
     All consultations:
-  </h2>
+  </h3>
 
   {% render_table student_consult %} 
-
 </div> 
-{% endblock %}
+
+{% endblock content %}
+  
+

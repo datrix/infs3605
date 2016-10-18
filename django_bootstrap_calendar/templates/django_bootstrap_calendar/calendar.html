@@ -1,4 +1,6 @@
-{% extends 'base1.html' %}  {% load bootstrap_calendar %} {% load i18n %}{% load staticfiles i18n %} {% block home_active %} active {% endblock home_active %} {% block content %}
+{% extends 'base1.html' %} {% load bootstrap_calendar %} {% load i18n %}{% load staticfiles i18n %} {% block home_active %} active {% endblock home_active %} {% block content %}
+<div id="mainContainer">
+	
 
 <div id="wrapper">
 
@@ -7,20 +9,48 @@
 		<ul class="sidebar-nav">
 			<div id="AlertSidebar"> Alerts </div>
 			<li>
-				<a href="#"> <span class="glyphicon glyphicon-exclamation-sign"> </span> High Priority Follow-up </a>
+				<a href="#"> <span class="glyphicon glyphicon-exclamation-sign"> </span> High Priority Follow-up <span class="badge">{{ high_priority_count }} </span> </a>
 			</li>
 			<li>
-				<a href="#"> <span class="glyphicon glyphicon-transfer"></span> Credit Transfers </a>
+				<a href="#"> <span class="glyphicon glyphicon-transfer"></span> Credit Transfers <span class="badge">{{ cred_trans_count }} </span> </a> 
 			</li>
 			<li>
-				<a href="#"> <span class="glyphicon glyphicon-globe"></span> International Exchange</a>
+				<a href="#"> <span class="glyphicon glyphicon-globe"></span> International Exchange <span class="badge">{{ int_exch_count }} </span> </a>
 			</li>
 		</ul>
-		<div id="sidebar-today"> Today's Appointments </div>
-		<div id="sidebar-today-below"></div>
+		<div id="sidebar-today"> Today's Appointments</div>
+		<div id="sidebar-today-below">
+			<tbody>
+				<table>
+					<!--<tr>
+						<th>Title</th>
+						<th>Student</th>
+					</tr>-->
+					<col width="50">
+					<col width="200">
+					<tr style="padding-top:3px">
+						<td style="padding-left:3px">
+
+						</td>
+					</tr>
+					{% for consult in consult_today %}
+					<tr class='clickable-row' data-href="/calendar/{{consult.title}}">
+						<!--Grabs the start time of the consultation-->
+						<td> {{consult.start|date:"g:i a"}} </td>
+						<td>
+							{{consult.title}}
+						</td>
+					</tr>
+					{% empty %}
+					<tr>
+						<td> <p> You Have No Consultations Today </p> </td>
+					</tr>
+					{% endfor %}
+				</table>
+			</tbody>
+		</div>
 	</div>
-
-
+	
 	<!-- Page Content -->
 	<div id="page-content-wrapper">
 		<div class="container-fluid" style="padding: 0px;">
@@ -53,17 +83,11 @@
           </div>
             
 
-    
+</div>
   </div>
     
     <!-- sidebar toggle JQuery script -->
-		<script>
-			$("#sidebar-toggle").click( function (e){
-				e.preventDefault();
-				$("#wrapper").toggleClass("menuNotDisplayed"); 
-			});
-			
-		</script>
+
   
   
   

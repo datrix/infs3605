@@ -5,6 +5,7 @@ from django import template
 from datetime import datetime
 from time import mktime
 from jsmin import jsmin
+#from django.utils import timezone
 
 
 def timestamp_to_datetime(timestamp):

@@ -16,18 +16,15 @@ class CalendarEvent(models.Model):
     Calendar Events
     """
     CSS_CLASS_CHOICES = (
-        ('', _('Normal')),
-        ('event-warning', _('Warning')),
-        ('event-info', _('Info')),
-        ('event-success', _('Success')),
-        ('event-inverse', _('Inverse')),
-        ('event-special', _('Special')),
-        ('event-important', _('Important')),
+        #(None), 
+        ('event-success', _('Low')),
+        ('event-warning', _('Medium')),
+        ('event-important', _('High')),
     )
     title = models.CharField(max_length=255, verbose_name=_('Title'),  primary_key = True)
     url = models.CharField(max_length=9, verbose_name=_('URL'), null=True, blank=True)
-    css_class = models.CharField(blank=True, max_length=20, verbose_name=_('Priority'),
-                                 choices=CSS_CLASS_CHOICES)
+    css_class = models.CharField(blank=False, max_length=20, verbose_name=_('Priority'),
+                                 choices=CSS_CLASS_CHOICES, null = True, default = 'event-success')
     start = models.DateTimeField(verbose_name=_('Start Time & Date'))
     end = models.DateTimeField(verbose_name=_('End Time & Date'), null=True,
                                blank=True)

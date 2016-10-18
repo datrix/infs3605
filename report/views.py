@@ -13,12 +13,13 @@ def index(request):
 
 @login_required(login_url='/login/')
 def consultations(request):
-  table = ConsultationTable(CalendarEvent.objects.all())
-  RequestConfig(request).configure(table)
+  table = ConsultationTable(CalendarEvent.objects.all(), order_by= 'start')
+  RequestConfig(request, paginate={'per_page': 15}).configure(table)
   return render(request, 'consultationReport.html', {'all_consultations': table })
 
 
 @login_required(login_url='/login/')
 def students(request):
-  table = StudentTable(student.objects.all())
+  table = StudentTable(student.objects.all(), order_by= 'zID')
+  RequestConfig(request, paginate={'per_page': 15}).configure(table)
   return render(request, 'studentReport.html', {'all_students': table })

@@ -14,9 +14,12 @@
 
 {% block content %}
 <form action="" method="post">{% csrf_token %}
-  {{student.zID}}  
-  {{ form.as_p }}
+<h2>
+   Edit {{student.zID}}  
+  </h2> 
+  {{ form | crispy }}
     <input type="submit" value="Update" />
+    <input type="button" onclick="javascript:history.go(-1);" value="Cancel">
 </form>
 
 {% endblock content %} 

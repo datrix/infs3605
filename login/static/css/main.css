@@ -13,7 +13,11 @@ html, body{
 #mainContainer{
 	padding: 0px;
 	margin: 0px;
+	border: 0px;
+	width: 100%;
+	height: 900px;
 }
+
 
 
 /* ------ BANNER CSS ----- */
@@ -49,10 +53,6 @@ html, body{
 	padding-right: 15px;
 	align-content: center;
 } 
-
-#logout{
-	text-align: left;
-}
 
 .navbar-default {
 	background-color:#222;
@@ -146,9 +146,60 @@ html, body{
 	backbround-color:white;
 }
 
+form {
+    padding: 15px; 
+    background-color: #e7eff8; 
+    border: #e7eff8 solid;
+}
 
+td{
+	padding-right: 15px;
+	padding-bottom: 0px;
+}
 
+#StudentInfo  td{
+	padding-bottom: 5px;
+}
+
+#AllEditStudentButtons container button{
+    display: inline-block;
+}
+#EditStudentBackButton button{
+    float:left;
+}
+#EditStudentButtons{
+    float:right;
+}
+/*#EditStudentBackButton button{
+	float: left;
+	vertical-align:5px;
+}*/
 
 /*.page-content {
 	height: 100%;	
 } */
+
+footer{
+	width: 100%;
+	padding:20px;
+	background-color: #222;
+	border-top: 5px solid #FFCC00;
+}
+
+
+#footerlinks li{
+	display: block;
+	float: left;
+	color: #FFCC00;
+}
+
+#footerlinks li a{
+	color: #FFCC00;
+	padding: 0px 8px;
+}
+
+#footerInfo{
+	padding: 15px 0px 0px 80px;
+	color: white;
+	font-weight: bold;
+}

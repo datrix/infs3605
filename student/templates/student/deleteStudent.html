@@ -1,5 +1,6 @@
 {% extends "base1.html" %} {% load staticfiles %}
 {% load crispy_forms_tags %}
+{% crispy example_form %}
 
 {% block home_active %} active {% endblock home_active %}
 
@@ -13,14 +14,9 @@
 
 {% block content %}
 <form action="" method="post">{% csrf_token %}
-  <h1>
-    Edit Event {{CalendarEvent.title}} 
-  </h1>
-  <h>
-  {% include 'form_template.html' %} 
-  
-    <input type="submit" value="Update" />
-    <input type="button" onclick="javascript:history.go(-1);" value="Cancel">
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm" />
+    <input type="button" value="Cancel" onClick="javascript:history.go(-1);"/>
 </form>
 
 {% endblock content %} 

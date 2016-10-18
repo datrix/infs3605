@@ -5,12 +5,13 @@ from django.db import models
 
 class consultation(models.Model):
   cID = models.AutoField(primary_key = True)
+  #title = model.CharField(max_length = 100)
   sTime = models.DateTimeField()
   fTime = models.DateTimeField()
   priority = models.CharField(max_length = 6, default = 'medium' )
   notes = models.CharField(max_length = 400)
   ugc = models.CharField(max_length = 100)
-  
+
   def __str__(consultation):
     return str(consultation.cID) + ': ' + str(consultation.zID) #+ ' Date: ' + str(consultation.sTime) + ' - ' + str(consultation.fTime)
 """

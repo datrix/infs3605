@@ -4,8 +4,8 @@ from student.models import student
 
 
 class ConsultationTable(tables.Table):
-  edit_consultation = tables.TemplateColumn('<a href="/calendar/{{record.title}}" class = "glyphicon glyphicon-pencil"></a>', orderable=False)
-  delete = tables.TemplateColumn('<a href = "#" class = "glyphicon glyphicon-trash"> </a>', orderable = False)
+  view = tables.TemplateColumn('<a href="/calendar/{{record.title}}" class = "glyphicon glyphicon-pencil"></a>', orderable=False)
+  delete = tables.TemplateColumn('<a href="/calendar/{{record.title}}/delete" class = "glyphicon glyphicon-trash"> </a>', orderable = False)
   
   class Meta: 
     model = CalendarEvent    
@@ -15,8 +15,8 @@ class ConsultationTable(tables.Table):
     
     
 class StudentTable(tables.Table):
-  edit_student = tables.TemplateColumn('<a href="/calendar/{{record.title}}" class = "glyphicon glyphicon-pencil"></a>', orderable=False)
-  delete = tables.TemplateColumn('<a href = "#" class = "glyphicon glyphicon-trash"> </a>', orderable = False)
+  view = tables.TemplateColumn('<a href="/student/{{record.zID}}" class = "glyphicon glyphicon-pencil"></a>', orderable=False)
+  delete = tables.TemplateColumn('<a href = "/student/{{record.zID}}/delete" class = "glyphicon glyphicon-trash"> </a>', orderable = False)
   
   class Meta:
     model = student

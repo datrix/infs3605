@@ -1,30 +1,28 @@
-{% extends "base1.html" %} {% load staticfiles %}
-{% load i18n %}
-{% load static %}
-
-{% load crispy_forms_tags %}}
-{% load render_table from django_tables2 %}
-
-{% block student_active %} active {% endblock student_active %}
-
-{% block head %}
+{% extends "base1.html" %} {% load staticfiles %} {% load i18n %} {% load static %} {% load crispy_forms_tags %}} {% load render_table from django_tables2 %} {% block student_active %} active {% endblock student_active %} {% block head %}
 <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
 <link rel="stylesheet" href="{% static 'django_tables2/bootstrap.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'css/student.css' %}" />
 <!--<link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}"> -->
 
-{% endblock head %}
+{% endblock head %} {% block content %}
 
-{% block content %}
+<div class="container-fluid" id="studentPageContent">
+  <div class="span3"><!--- class="container-fluid"-->
+    <h1 style="padding-left:40px">Students</h1>
+    <hr>
+    
+  </div>
 
-<div>
+  <div id="createButton">
+    <a href="/student/newStudent" class="btn btn-primary"> {% trans 'New Student' %} </a>
+  </div>
   <br>
-  <h1>
-    Students
-  </h1>
-    <a href ="/student/newStudent" class="btn btn-primary"> {% trans 'New Student' %} </a> 
-  <ul>
-    <div class = col-md-4>
+
+
+  <!--
+//Original code for the crispy form
+<ul>
+    <div class="col-md-4">
         <form action="" method="get">
           {{ filter.form|crispy }}
           <input class="btn btn-primary" type="submit" value="Submit" />
@@ -33,11 +31,25 @@
         </form>
     </div>
   </ul>
+-->
+  <ul>
+    <div class="col-sm-10">
+
+        <div class="row">
+          <div class="col-md-8">
+            <form action="" method="get">
+              {{ filter.form|crispy }}
+              <input class="btn btn-primary" type="submit" value="Submit" />
+              <input class="btn btn-warning" type="reset" value="Reset" />
+              <a href="/student"><button type="button" class="btn btn-danger">Clear Filter</button></a>
+            </form>
+          </div>
+        </div>
+    </div>
+
+  </ul>
   <div>
-    <br>
-  </div>
-  <div>
-    {% render_table student_table %}     
+    <br> {% render_table student_table %}
   </div>
 
 </div>

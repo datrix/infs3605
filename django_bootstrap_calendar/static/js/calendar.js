@@ -448,7 +448,7 @@ if(!String.prototype.formatNum) {
 
 		data.hours = (parseInt(time_end[0]) - parseInt(time_start[0]));
 		var lines = data.hours * data.in_hour;
-		var ms_per_line = (60000 * parseInt(this.options.time_split));
+		var ms_per_line = (60000 * parseInt(this.options.time_split))
 
 		var start = new Date(this.options.position.start.getTime());
 		start.setHours(time_start[0]);
@@ -502,7 +502,7 @@ if(!String.prototype.formatNum) {
 			}
 
 			var lines_left = lines - e.top;
-			var lines_in_event = (e.end - e.start) / ms_per_line;
+			var lines_in_event = ((e.end - e.start) / ms_per_line);
 			if(event_start >= 0) {
 				lines_in_event = (e.end - start.getTime()) / ms_per_line;
 			}

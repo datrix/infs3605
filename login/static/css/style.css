@@ -140,3 +140,13 @@ p.small {
     height: 0px;
     border-bottom:solid 3px #000;
 }
+
+
+#login-container{
+	background-image:url(../images/login_background3.jpg);
+  background-position:center;
+	background-size:cover;
+	box-shadow: 0 0 4px 4px white inset;
+	height: 800px;
+	background-repeat: no-repeat;
+}

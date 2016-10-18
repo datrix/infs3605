@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django_bootstrap_calendar.models import CalendarEvent
 from django_tables2 import RequestConfig
 from .tables import StudentDetailTable, StudentTable, CoursesTakenTable
+from django.core.urlresolvers import reverse
 
 # Create your views here.
 
@@ -50,6 +51,16 @@ class EditStudent(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
       studentObj = student.objects.get(zID=self.kwargs['zID'])
       return studentObj  
+  
+class DeleteStudent(LoginRequiredMixin, DeleteView):
+    login_url = '/login/'
+    model = student
+    success_url = 'index'
+    template_name = 'student/deleteStudent.html'
+    
+    def get_object(self, queryset=None):
+      studentObj = student.objects.get(zID=self.kwargs['zID'])
+      return studentObj 
   
 def student_list(request):
   student = StudentDetailTable(request.GET, queryset=student.objects.all())

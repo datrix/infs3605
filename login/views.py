@@ -14,6 +14,8 @@ def index(request):
 def test(request):
   return HttpResponse("<h1>Login Successful</h1>")
 
+
+
 class UserFormView(View):
   form_class = UserForm
   template_name = 'login.html'
@@ -34,6 +36,7 @@ def login_user(request):
         else:
             return render(request, 'login/login.html', {'error_message': 'Invalid login'})
     return render(request, 'login/login.html')
+  
 
 def logout_view(request):
     logout(request)

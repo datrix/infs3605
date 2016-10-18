@@ -4,10 +4,79 @@
 
 {% block content %}
 
+
+<div class="col-sm-offset-2 ">
+  <!--not sure why but this div restores harmony to the padding of this page-->
+</div> 
+<br>
+
+<div class="container" id="AllEditStudentButtons">
+  <div id="EditStudentBackButton" >
+    <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left" <a href = "< input type=button value="Previous Page" onClick="javascript:history.go(-1);"  ""> </a>
+    </button>  
+
+  </div>
+
+  <div id="EditStudentButtons">
+    <button type="button" class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/edit/'"  ""> </a>
+    </button>
+    <button type="button" class = "btn btn-default glyphicon glyphicon-trash" <a href = "< input type=button value="Delete Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/delete/'"  ""> </a>
+    </button>
+  </div>
+</div>
+<h1>Consultation Details</h1>
+<hr>
+
+<table id="ConsultationHeader" style="font-size:14pt">
+  <tr>
+    <td><b>Title: </b></td>
+    <td>{{Consultation.title}}</td>
+  </tr>
+  <tr>
+    <td><b>zID and name:</b></td>
+    <td>{{Consultation.zID}}</td>
+  </tr>
+</table>
+<hr>
+
+<table id="StudentInfo" >
+   <tr>
+     <td><b>Details of consultation:</b></td>
+     <td>{{Consultation.title}}</td>
+   </tr>
+   <tr>
+     <td><b>Student ID and name: </b></td>
+     <td>{{Consultation.zID}}</td>
+   </tr>
+   <tr>
+     <td><b>Start time:</b></td>
+     <td>Start time: {{Consultation.start}}</td>
+   </tr>
+    <tr>
+       <td><b>End time:</b></td>
+       <td>End time: {{Consultation.end}}</td>
+     </tr>
+  <tr>
+     <td><b>Appointment Type:</b></td>
+     <td>{{Consultation.apptType}}</td>
+   </tr>
+  <tr>
+     <td><b>Priority:</b></td>
+     <td>{{ Consultation.get_css_class_display}}</td>
+   </tr>
+  
+</table>
+    <br>
+<hr>
+<!--
 <div>
   <br>
     <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left" <a href = "< input type=button value="Previous Page" onClick="javascript:history.go(-1);"  ""> </a>
-</button
+</button>
+<button type="button" class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/edit/'"  ""> </a>
+</button>
+<button type="button" class = "btn btn-default glyphicon glyphicon-trash" <a href = "< input type=button value="Delete Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/delete/'"  ""> </a>
+</button>
   <br>
   <h1>
     Details of consultation: {{Consultation.title}}
@@ -27,4 +96,5 @@
   <ul>
   </ul>
 </div>
+-->
 {% endblock %}

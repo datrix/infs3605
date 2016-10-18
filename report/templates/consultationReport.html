@@ -8,13 +8,28 @@
 <link rel="stylesheet" href="{% static 'django_tables2/bootstrap.css' %}" />
 {% endblock head %}
 
+
+
 {% block content %}
 <h1>
   All Consultations
 </h1>
+<div class="col-sm-offset-2 ">
+  <!--not sure why but this div restores harmony to the padding of this page-->
+</div> 
 <br>
-  <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left" <a href = "< input type=button value="Previous Page" onClick="javascript:history.go(-1);"  ""> </a>
-</button
+<div class="col-md-12">
+  <div class="container" id="AllEditStudentButtons">
+    <div id="EditStudentBackButton" >
+      <button type="button" class="btn btn-default glyphicon glyphicon-chevron-left" 
+        <a href="< input type=button value=" Previous Page " onClick="javascript:history.go(-1); "  " " > </a>
+      </button>  
+    </div>
+    <div id="EditStudentButtons">
+      <button type="button" class="btn btn-default glyphicon glyphicon-print" <a href="< input type=button value="Print" onClick=" "> </a></button>
+    </div>
+  </div>
+
 <br>
 <div>
     {% render_table all_consultations %} 

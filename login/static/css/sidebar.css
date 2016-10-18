@@ -3,10 +3,11 @@
 	z-index: 1;
 	position: absolute;
 	width: 0;
-	height: 800px;
+	height: 900px;
 	overflow-y: hidden; /*content that goes beyond the sidebar doesn't pop out on the screen */
 	background-color: #166696;
 	border-right: 3px #186ca1 solid;
+	border-bottom: 5px #186ca1 solid;
 	width: 250px;
 	transition: 0.7s;
 }
@@ -93,3 +94,27 @@
 	border-color: #114b6f ;
 }
 
+#sidebar-today-below table{
+	border-left: 6px solid #66aeff;
+	border-bottom: 1px solid #cccccc;
+ 	background-color: #f7f7f7;
+	width: 100%;
+	font-size: 9pt;
+}
+
+#sidebar-today-below td{
+		vertical-align: bottom;
+	padding:3px;
+}
+
+.badge{
+	display:inline;
+}
+
+tr.clickable-row {
+	cursor: pointer;
+} 
+
+tr.clickable-row:hover{
+	background-color: white
+}

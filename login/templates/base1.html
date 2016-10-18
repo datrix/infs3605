@@ -37,7 +37,8 @@
 	</head>
 	
 	<body>
-
+		
+		
 	<div class="top">
 		<div class="row" id="banner">
 			<div class="col-md-2">
@@ -54,15 +55,15 @@
 				<!-- navbar menu items -->
 				<div>
 					<ul class="nav navbar-nav" >
-						<li class = "{% block home_active %} {% endblock home_active %}"> <a href="../calendar/"> Home </a></li> <!-- active highlights the page you're on (faded tab)-->
-						<li class = "{% block student_active %} {% endblock student_active %}"> <a href="../student/" id="test"> Students </a></li>
+						<li class = "{% block home_active %} {% endblock home_active %}"> <a href="/calendar/"> Home </a></li> <!-- active highlights the page you're on (faded tab)-->
+						<li class = "{% block student_active %} {% endblock student_active %}"> <a href="/student/" id="test"> Students </a></li>
 						<li> <a href="AlertsPage.html"> Alerts </a></li>
 						<!-- drop down for reports -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="../report/consultations">By Appointments</a></li>
-								<li><a href="#">By Students</a></li>
+								<li><a href="/report/consultations">By Appointments</a></li>
+								<li><a href="/report/students">By Students</a></li>
 								
 							</ul>	
 						</li>
@@ -79,8 +80,7 @@
 
 		</nav>	
 <!-- START OF CALENDAR DIV (Jeff)-->
-    <div class="container" id="mainContainer">
-
+    <div class="container-fluid"  style="padding: 0px; margin: 0px;" >
 			
       {% block content %}
       {% endblock content %}
@@ -95,6 +95,22 @@
       <script src="{% static 'js/jquery.min.js' %}"></script>
       <script src="{% static 'js/bootstrap.min.js' %}"></script>
 			<script type="text/javascript" src="components/jstimezonedetect/jstz.min.js"></script>
+		<!-- Sidebar Appointment script -->
+		<script>
+		jQuery(document).ready(function($) {
+    	$(".clickable-row").click(function() {
+        	window.location = $(this).data("href");
+    	});
+		});
+		</script>
+		<!-- Sidebar Toggle-->
+		<script>
+			$("#sidebar-toggle").click( function (e){
+				e.preventDefault();
+				$("#wrapper").toggleClass("menuNotDisplayed"); 
+			});
+		</script>
+			
 
       <!-- Your stuff: Third-party javascript libraries go here -->
 
@@ -103,8 +119,39 @@
       {% bootstrap_calendar_js language='en-EN' %} 
       {% bootstrap_calendar_init language='en-EN' %}
     {% endblock javascript %}
+		</div>
+				
+		
+		<!-- footer code -->
+		
+		
+			<footer>			
+				<div class="row">
+					<div class="col-lg-12">
+							<ul id="footerlinks">
+								<li><a href="https://www.unsw.edu.au/privacy" target="_blank"> Privacy Policy    </a> <span class="divider"> | </span> </li>
+								<li><a href="https://www.unsw.edu.au/copyright-disclaimer" target="_blank"> Copyright & Disclaimer   </a>  <span class="divider"> | </span> </li>
+								<li><a href="https://www.unsw.edu.au/accessibility" target="_blank"> Accessibility  </a>  <span class="divider"> | </span> </li>
+								<li><a href="https://www.unsw.edu.au/sitemap" target="_blank"> Sitemap  </a> <span class="divider"> | </span>  </li>
+								<li><a href="https://www.unsw.edu.au/unsw-website-feedback" target="_blank"> Site Feedback </a> </li>
+							
+						</ul>
+						
+					</div>
+					<div class="col-lg-12" id="footerInfo">
+						UNSW Sydney NSW 2052 Australia
+						<br> Telephone: +61 2 9385 1000
+						<br> CRICOS provider Code 00098G ABN: 57 195 873 179
+						<br> Authorised by the Chief Technology Officer, UNSW
+						<br> Last updated: 29th October 2014
+						
+					</div>
+					
+				</div>
+
+					
+			</footer>
 		
 		</body>
-
 
 </html>

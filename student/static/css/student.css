@@ -1,6 +1,67 @@
 html, body{
-  }
+}
+
+#studentPageContent{
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  width: 100%;
+}
 
 .btn{
   border-radius: 0px;
 }
+
+
+#bodyBanner{
+  background-color: #E6E6E6;
+  padding: 10px 0px 5px 50px;
+  height: 45px;
+}
+
+#createButton{
+	padding-left: 50px
+}
+
+/*h1 {
+	text-align: left;
+	font-family: "Helvetica", "Arial";
+	font-size: 16pt;
+	font-weight: normal;
+	background-color: #F2F2F2;
+	line-height: 40px;
+	padding: 5px;
+}*/
+
+.span3 {
+	padding-left: 5px;
+}
+
+
+p{
+	font-size: 14pt;
+	font-weight: normal;
+    color: #00568e;
+}
+
+h5 {
+    color: #0072c6 !important;
+}
+
+#p1 {
+    font-size: 10pt;
+    font-weight: italic;
+}
+
+form {
+    padding: 15px; 
+    background-color: #e7eff8; 
+    border: #e7eff8 solid;
+}
+
+label {
+  display: inline-block;
+  width: 140px;
+  text-align: left;
+}
+

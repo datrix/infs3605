@@ -10,7 +10,7 @@
 <head>
   <meta charset="utf-8">
   <title>ISTM Undergraduate Coordinator Login</title>
-
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
   <!-- Custom Stylesheet -->
@@ -25,7 +25,7 @@
   <div id="colorstri1" /> </div>
   <div id="colorstrip2" /> </div>
   <div id="body" />
-  <div class="container" >
+  <div id = "login-container">
     <div class="top">
       <h1 id="title" class="hidden"><span id="logo"> </span></h1>
     </div>
@@ -40,6 +40,7 @@
       <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
         {% csrf_token %}
         <table align="center">
+          <br>
           <tr>
             <td>{{ form.username.label_tag }}</td>
           </tr>
@@ -53,8 +54,9 @@
           <td>{{ form.password }}</td>
           </tr>
         </table>
-
-        <input type="submit" value="login" />
+        <br>
+        <input class="btn btn-default" type="submit" value="LOGIN" />
+        <!--<input type="submit" value="login" /> -->
         <input type="hidden" name="next" value="{{ next }}" />
       </form>
     </div>

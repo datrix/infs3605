@@ -3,8 +3,8 @@ from .models import student, enrol
 from django_bootstrap_calendar.models import CalendarEvent
 
 class StudentTable(tables.Table):
-  edit_student = tables.TemplateColumn('<a href="/student/{{record.zID}}" class = "glyphicon glyphicon-pencil"></a>', orderable=False)
-  delete = tables.TemplateColumn('<a href = "#" class = "glyphicon glyphicon-trash"> </a>', orderable = False)
+  view = tables.TemplateColumn('<a href="/student/{{record.zID}}" class = "glyphicon glyphicon-pencil"></a>', orderable=False)
+  delete = tables.TemplateColumn('<a href = "/student/{{record.zID}}/delete/" class = "glyphicon glyphicon-trash"> </a>', orderable = False)
   
   class Meta: 
     model = student
@@ -13,8 +13,9 @@ class StudentTable(tables.Table):
     
 
 class StudentDetailTable(tables.Table):
-  edit = tables.TemplateColumn('<a href="/calendar/{{record.title}}" class = "glyphicon glyphicon-pencil"></a>', orderable=False)
-  delete = tables.TemplateColumn('<a href = "#" class = "glyphicon glyphicon-trash"> </a>', orderable = False)
+  view = tables.TemplateColumn('<a href="/calendar/{{record.title}}" class = "glyphicon glyphicon-pencil"></a>', orderable=False)
+  delete = tables.TemplateColumn('<a href="/calendar/{{record.title}}/delete" class = "glyphicon glyphicon-trash"> </a>', orderable = False)
+  
   
   class Meta: 
     model = CalendarEvent
