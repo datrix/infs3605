@@ -5,13 +5,14 @@ from .models import student, StudentFilter, enrol
 from django.conf import settings
 from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import StudentForm #new event form 
+from .forms import StudentForm, EnrolForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django_bootstrap_calendar.models import CalendarEvent
 from django_tables2 import RequestConfig
 from .tables import StudentDetailTable, StudentTable, CoursesTakenTable
 from django.core.urlresolvers import reverse
+from django.forms import formset_factory
 
 # Create your views here.
 
@@ -33,11 +34,28 @@ def courses_taken(request, zID):
   Student = get_object_or_404(student, pk = zID)
   course_taken = CoursesTakenTable(enrol.objects.filter(zID = zID))
   return render(request, 'student/courses_taken.html', {'Student':Student, 'course_taken': course_taken})
+
+class AddCourses(LoginRequiredMixin, CreateView):
+  login_url = '/login/'
+  model = enrol 
+  template_name = 'student/enrol.html'
+  form_class = EnrolForm
+  
+  
+class UpdateCourses(LoginRequiredMixin, UpdateView):
+  login_url = '/login/'
+  fields = ['zID', 'course', 'grade', 'sem_taken']
+  template_name = 'student/editEnrolment.html'
+  
+  def get_object(self, queryset=None):
+    enrolObj = enrol.objects.get(zID=self.kwargs['zID'])
+    return enrolObj
       
 def get_event (request, calendar):
     return calendar.event_set.all()
   
-class CreateStudent(CreateView):
+class CreateStudent(LoginRequiredMixin, CreateView):
+  login_url = '/login/'
   model = student
   template_name = 'student/createstudent_form.html'
   form_class = StudentForm

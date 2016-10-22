@@ -21,6 +21,8 @@ class CalendarEvent(models.Model):
         ('event-warning', _('Medium')),
         ('event-important', _('High')),
     )
+    
+    
     title = models.CharField(max_length=255, verbose_name=_('Title'),  primary_key = True)
     url = models.CharField(max_length=9, verbose_name=_('URL'), null=True, blank=True)
     css_class = models.CharField(blank=False, max_length=20, verbose_name=_('Priority'),

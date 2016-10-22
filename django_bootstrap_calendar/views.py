@@ -71,10 +71,6 @@ class CalendarView(LoginRequiredMixin, TemplateView):
         context['int_exch_count'] = CalendarEvent.objects.filter(apptType="International Exchange").filter(start__gte=today_start).filter(start__lt=today_end).count()
         context['consult_today'] = CalendarEvent.objects.filter(start__gte=today_start).filter(start__lt=today_end)
         return context
-      
-      
-
-    
 
 class CreateEvent(LoginRequiredMixin, CreateView): 
     login_url = '/login/'

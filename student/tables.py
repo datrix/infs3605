@@ -28,7 +28,7 @@ class CoursesTakenTable(tables.Table):
   class Meta:
     model = enrol
     template = 'django_tables2/bootstrap.html'
-    exclude = ['id']
+    exclude = ['id','zID']
     attrs = {'class': 'table table-bordered table-striped table-hover'}
     
     

@@ -12,6 +12,8 @@ from django.contrib.admin.widgets import FilteredSelectMultiple
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div, Reset, Button, Row
 from crispy_forms.bootstrap import InlineField, FormActions, InlineRadios
+from django.contrib.auth.models import User
+
 
 
 class EventForm(forms.ModelForm): 
@@ -35,7 +37,8 @@ class EventForm(forms.ModelForm):
           css_class='row',
         ),
         'apptType',
-        'notes'
+        'notes',
+        'ugc'
       ),
       FormActions(
         Submit('submit', 'Submit'),
@@ -45,7 +48,7 @@ class EventForm(forms.ModelForm):
     
   class Meta: #information about the class
     model = CalendarEvent
-    exclude = ['ugc', 'url']
+    exclude = ['url']
     
     dateTimeOptions = {
        'daysOfWeekDisabled':[0,6],
@@ -66,7 +69,29 @@ class EditEventForm(forms.ModelForm):
     class Meta: 
       model = CalendarEvent
       exclude = ['ugc', 'url']
-
+      Fieldset(
+        'Please input the following fields:',
+        'title',
+        Div(
+          Div('zID', css_class='col-md-5',),
+          Div(css_class = 'col-md-1'),
+          InlineRadios('css_class', css_class = 'col-md-5',),
+          css_class='row',
+        ),
+        Div(
+          Div('start', css_class='col-md-5',),
+          Div(css_class = 'col-md-1'),
+          Div('end', css_class='col-md-5',),
+          css_class='row',
+        ),
+        'apptType',
+        'notes',
+        'ugc'
+      ),
+      FormActions(
+        Submit('submit', 'Submit'),
+        Button('cancel', 'Cancel', css_class='btn-default', onclick="window.history.back()")
+      )
       dateTimeOptions = {
          'daysOfWeekDisabled':[0,6],
          'format':'dd/mm/yyyy HH:ii P',

@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django_tables2',
     'django_filters',
     'crispy_forms',
+    #'wkhtmltopdf',
+    'easy_pdf',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -85,6 +87,8 @@ TEMPLATES = [
         },
     },
 ]
+
+WKHTMLTOPDF_CMD = '/usr/local/bin/wkhtmltopdf'
 
 WSGI_APPLICATION = 'coordsys.wsgi.application'
 
