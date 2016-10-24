@@ -1,0 +1,42 @@
+{% extends "base1.html" %} {% load staticfiles %}
+{% load render_table from django_tables2 %}
+
+{% block alerts_active %} active {% endblock alerts_active %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+<link rel="stylesheet" href="{% static 'django_tables2/bootstrap.css' %}" />
+{% endblock head %}
+
+{% block content %}
+<div class="span3" style="padding:30px">
+  <div class="col-md-12">
+    <div>
+      <h2>
+        High Priority
+      </h2>
+      <hr>
+      {% render_table high_priority %}
+    </div>
+    <br>
+    <div>
+      <h2>
+        Credit Transfers
+      </h2>
+      <hr>
+      {% render_table cred_trans %}
+    </div>
+    <br>
+    <div>
+      <h2>
+        International Exchange
+      </h2>
+      <hr>
+      {% render_table int_exch %}
+    </div>
+    <br>
+  </div>
+</div>
+
+
+{% endblock content%}

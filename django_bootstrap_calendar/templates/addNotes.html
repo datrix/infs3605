@@ -1,0 +1,91 @@
+{% extends "base1.html" %} {% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block home_active %} active {% endblock home_active %}
+
+{% block head %}
+{{ form.media }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    
+
+
+{% endblock %}
+
+{% block content %}
+
+<div class="col-sm-offset-2 ">
+  <!--not sure why but this div restores harmony to the padding of this page-->
+</div> 
+<br>
+
+<div class="container" id="AllEditStudentButtons">
+  <div id="EditStudentBackButton" >
+    <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left" <a href = "< input type=button value="Previous Page" onClick="javascript:history.go(-1);"  ""> </a>
+    </button>  
+
+  </div>
+
+  <div id="EditStudentButtons">
+    <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Consultation Page" onClick="window.location.href='/student/{{object.zID.zID}}/new_event/' "  " "> </a></button>
+    <button type="button" class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Consultation" onClick="window.location.href='/calendar/{{object.title}}/edit/'"  ""> </a>
+    </button>
+    <button type="button" class = "btn btn-default glyphicon glyphicon-trash" <a href = "< input type=button value="Delete Consultation" onClick="window.location.href='/calendar/{{object.title}}/delete/'"  ""> </a>
+    </button>
+  </div>
+</div>
+<div>
+  <h1>Add Notes</h1>
+  <hr>
+  <h2>{{object.title}}</h2>
+</div>
+
+<table id="StudentInfo" >
+   
+   <tr>
+     <td><b>Student ID and name: </b></td>
+     <td>{{object.zID}}</td>
+   </tr>
+   <tr>
+     <td><b>Start time:</b></td>
+     <td>{{object.start}}</td>
+   </tr>
+    <tr>
+       <td><b>End time:</b></td>
+       <td>{{object.end}}</td>
+     </tr>
+  <tr>
+     <td><b>Appointment Type:</b></td>
+     <td>{{object.apptType}}</td>
+   </tr>
+  <tr>
+     <td><b>Priority:</b></td>
+     <td>{{object.css_class}}</td>
+   </tr>
+  <tr>
+    <td><b>Undergraduate Coordinator:</b></td>
+  <td> {{object.ugc}} </td>
+  </tr>  
+</table>
+
+<hr>
+
+<div>
+  <div class="col-md-6">
+
+
+    <form action="" method="post"> {% csrf_token %}
+      <hr>
+      {% include 'form_template.html' %}  
+      
+    </form>
+    <br>
+  </div>
+</div>
+
+  <!--
+    <input type="submit" value="Update" class="btn btn-success" />
+    <input type="button" onclick="javascript:history.go(-1);" value="Cancel" class="btn btn-danger">
+  -->
+{% endblock content %} 

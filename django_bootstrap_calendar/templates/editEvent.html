@@ -11,26 +11,59 @@
     
 {% endblock %}
 
-{% block content %}
+
+<!---
+<div>
+  <h1>Edit Event {{CalendarEvent.title}}</h1>
+</div>
+
+<div class="span3">
+  <div class="col-md-12">
+    <hr>
+
+    <form action="" method="get">
+      <h3 style="font-weight:normal">Please input the following fields:</h3>
+      <hr>
+      {% include 'form_template.html' %}  
+    </form>
+  </div>
+</div>
+
+#original working form:
+
 <div class = "span3">
  <h1>
    Edit Event {{CalendarEvent.title}}
- </h1>
- <hr>
+ </h1> 
+</div>
+</hr>
+<form>
+  </hr>
+  {% include 'form_template.html' %}   
+</form>
+-->
+
+
+{% block content %}
+<div>
+  <h1>{{object.title}}</h1>
 </div>
 
-  
+<div>
+  <div class="col-md-6">
+    <hr>
 
-<div class = "row">
-  <div class = "col-md-6">   
-
-    {% csrf_token %}
-    {% include 'form_template.html' %} 
-    <input type="submit" value="Update" />
-    <input type="button" css-class="btn-default" onclick="javascript:history.go(-1);" value="Cancel">
+    <form action="" method="post"> {% csrf_token %}
+      <hr>
+      {% include 'form_template.html' %}  
+      
+    </form>
     <br>
   </div>
-  {% endblock content %} 
 </div>
 
-<br>
+  <!--
+    <input type="submit" value="Update" class="btn btn-success" />
+    <input type="button" onclick="javascript:history.go(-1);" value="Cancel" class="btn btn-danger">
+  -->
+{% endblock content %} 

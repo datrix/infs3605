@@ -21,14 +21,34 @@
       </button>  
     </div>
     <div id="EditStudentButtons">
-      <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Page" onClick="' "  " "> </a></button>
-      <button type="button " class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Page" onClick="" ""> </a></button>
+      <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Page" onClick="window.location.href='/student/{{Student.zID}}/courses_taken/addCourses/' "  " "> </a></button>
+      <button type="button " class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Page" onClick="window.location.href='/student/{{Student.zID}}/courses_taken/update/" ""> </a></button>
     </div>
   </div>
 
-<h1>
-  This is courses taken page
-</h1>
+<h2>
+  Results Summary
+</h2>
+<hr>
+<table id="StudentInfo" >
+       <tr>
+         <td><b>Name: </b></td>
+         <td>{{Student.f_name}} {{Student.l_name}}</td>
+       </tr>
+      <tr>
+         <td><b>zID: </b></td>
+         <td>{{Student.zID}}</td>
+       </tr>
+       <tr>
+         <td><b>Degree: </b></td>
+         <td>{{Student.degreeCode}}</td>
+       </tr>
+       <tr>
+         <td><b>Overall WAM: </b></td>
+         <td> {{all_grades|floatformat:2}} </td>
+       </tr>
+    </table>
+<hr>
 
 {% render_table course_taken %}
 {% endblock %}

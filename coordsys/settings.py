@@ -144,6 +144,8 @@ STATIC_URL = '/static/'
 #redirect after login 
 LOGIN_REDIRECT_URL = '/calendar'
 
+FILTERS_HELP_TEXT_FILTER = False
+
 
 
 

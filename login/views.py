@@ -41,5 +41,9 @@ def login_user(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect("/")
-  
+
+def curr_user(request):
+  username = None
+  if request.user.is_authenticated():
+    username = request.user.get_username()
   

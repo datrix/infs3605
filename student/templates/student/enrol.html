@@ -1,32 +1,33 @@
-{% extends "base1.html" %} {% load staticfiles %}
+{% extends "base1.html" %} 
+{% load staticfiles %} 
+{% load crispy_forms_tags %} 
 
-{% block student_active %} active {% endblock student_active %}
+{% crispy example_form %} 
 
-{% block head %}
+{% block home_active %} active {% endblock home_active %} {% block head %} 
 {{ form.media }}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
-{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" type="text/css" />
+<script src="{{ STATIC_URL }}js/bootstrap.js"></script>
 
-{% block content %}
-<br>
-  <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left" <a href = "< input type=button value="Previous Page" onClick="javascript:history.go(-1);"  ""> </a>
-    </button>
-<div class = "span3">
- <h1>
-   Enrol Student
- </h1>
+{% endblock %} {% block content %}
+<div class="span3">
+  <h1>
+   Add Course
+  </h1>
 </div>
- 
-<form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
-        {% include 'form_template.html' %}        
-  {% csrf_token %}
-      <button type="submit" class="btn btn-success">Submit</button>
-</form>
-  
-    <br>
+
+<div class="span3">
+  <div class="col-md-8">
+    <hr/>
+    <!---line underneath title --->
+    <div>
+        {% include 'form_template.html' %}
+        {% csrf_token %}
+
+    </div>
   </div>
 </div>
+
 
 {% endblock content %}

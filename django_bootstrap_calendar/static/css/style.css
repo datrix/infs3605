@@ -11,7 +11,7 @@ h1 {
 	font-weight: normal;
 	background-color: #F2F2F2;
 	line-height: 40px;
-	padding: 5px;
+	padding-left: 15px;
 }
 
 .span3 {
@@ -147,4 +147,9 @@ tr:first-child:hover {
 
 td {
     background-color: white;
+}
+
+button{
+	padding-left: 40px;
+	padding-bottom: 15px;
 }

@@ -18,6 +18,7 @@
   </div>
 
   <div id="EditStudentButtons">
+    <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Consultation Page" onClick="window.location.href='/student/{{Consultation.zID.zID}}/new_event/' "  " "> </a></button>
     <button type="button" class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/edit/'"  ""> </a>
     </button>
     <button type="button" class = "btn btn-default glyphicon glyphicon-trash" <a href = "< input type=button value="Delete Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/delete/'"  ""> </a>
@@ -26,22 +27,21 @@
 </div>
 <h1>Consultation Details</h1>
 <hr>
-
-<table id="ConsultationHeader" style="font-size:14pt">
-  <tr>
+  <!--<table id="ConsultationHeader" style="font-size:14pt">
+<tr>
     <td><b>Title: </b></td>
     <td>{{Consultation.title}}</td>
   </tr>
   <tr>
     <td><b>zID and name:</b></td>
     <td>{{Consultation.zID}}</td>
-  </tr>
+  </tr> 
 </table>
-<hr>
+<hr>-->
 
 <table id="StudentInfo" >
    <tr>
-     <td><b>Details of consultation:</b></td>
+     <td ><b>Details of consultation:</b></td>
      <td>{{Consultation.title}}</td>
    </tr>
    <tr>
@@ -50,11 +50,11 @@
    </tr>
    <tr>
      <td><b>Start time:</b></td>
-     <td>Start time: {{Consultation.start}}</td>
+     <td>{{Consultation.start}}</td>
    </tr>
     <tr>
        <td><b>End time:</b></td>
-       <td>End time: {{Consultation.end}}</td>
+       <td>{{Consultation.end}}</td>
      </tr>
   <tr>
      <td><b>Appointment Type:</b></td>
@@ -62,39 +62,27 @@
    </tr>
   <tr>
      <td><b>Priority:</b></td>
-     <td>{{ Consultation.get_css_class_display}}</td>
+     <td>{{Consultation.css_class}}</td>
    </tr>
-  
+  <tr>
+    <td><b>Undergraduate Coordinator:</b></td>
+  <td> {{Consultation.ugc}} </td>
+  </tr>
+  <tr>
+    <td><b>Notes:</b></td>
+  <td> {{Consultation.notes}} </td>
+    
+  </tr>
+ <tr>
+  <td></td>
+   <td> </td>
+  </tr> 
 </table>
     <br>
-<hr>
-<!--
-<div>
-  <br>
-    <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left" <a href = "< input type=button value="Previous Page" onClick="javascript:history.go(-1);"  ""> </a>
-</button>
-<button type="button" class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/edit/'"  ""> </a>
-</button>
-<button type="button" class = "btn btn-default glyphicon glyphicon-trash" <a href = "< input type=button value="Delete Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/delete/'"  ""> </a>
-</button>
-  <br>
-  <h1>
-    Details of consultation: {{Consultation.title}}
-  </h1>
-  <h2>
-    Student ID and name: {{Consultation.zID}}
-  </h2>
-  <p>
-    Start time: {{Consultation.start}}
-  </p>
-  <p>
-    End time: {{Consultation.end}}
-  </p>
-  <p>
-    Appointment Type: {{Consultation.apptType}}
-  </p>
-  <ul>
-  </ul>
+<div id="editNotes">
+  <button type="button" class="btn btn-default" <a href="< input type=button value="Add Notes" onClick="window.location.href='/calendar/{{Consultation.title}}/add_notes/' "  " ">Edit Notes </a></button>
 </div>
--->
+<hr>
+
+
 {% endblock %}

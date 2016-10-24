@@ -34,7 +34,7 @@
 						</td>
 					</tr>
 					{% for consult in consult_today %}
-					<tr class='clickable-row' data-href="/calendar/{{consult.title}}">
+					<tr class='clickable-row' data-href="/calendar/{{consult.title}}/add_notes/">
 						<!--Grabs the start time of the consultation-->
 						<td> {{consult.start|date:"g:i a"}} </td>
 						<td>

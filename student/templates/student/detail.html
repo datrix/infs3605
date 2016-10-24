@@ -17,7 +17,7 @@
       </button>  
     </div>
     <div id="EditStudentButtons">
-      <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Consultation Page" onClick="window.location.href='/calendar/newevent' "  " "> </a></button>
+      <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Consultation Page" onClick="window.location.href='/student/{{Student.zID}}/new_event/' "  " "> </a></button>
       <button type="button " class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Page" onClick="window.location.href='/student/{{Student.zID}}/edit'" ""> </a></button>
     </div>
   </div>
@@ -33,7 +33,7 @@
 </table>
 <hr>
 
-<table id="StudentInfo" >
+<table id="StudentInfo">
        <tr>
          <td><b>Email: </b></td>
          <td>{{Student.email}}</td>
@@ -53,7 +53,9 @@
     <a href = "/student/{{Student.zID}}/courses_taken "><h4>
        Previous and current courses undertaken
       </h4></a>
+  
 
+    
 <div>
   <h3>
     All consultations:
@@ -61,7 +63,16 @@
 
   {% render_table student_consult %} 
 </div> 
+<hr>
 
+{% if Student.degreeCode.degreeCode == 3584 or Student.degreeCode.degreeCode == 3964 %}
+<a href = "" ><h4>
+Co-op Placement Preferences 
+ </h4></a>
+
+  {% render_table placement_pref %} 
+
+{% endif %}
 {% endblock content %}
   
 

@@ -14,17 +14,19 @@
   <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left" <a href = "< input type=button value="Previous Page" onClick="javascript:history.go(-1);"  ""> </a>
     </button>
 <div class = "span3">
- <h1>
+ <h1 style="padding-left:15px">
    Create Student
  </h1>
+
 </div>
 <div class = "row">
   <div class = "col-md-6">   
-
+    <hr/>
     {% csrf_token %}
     {% include 'form_template.html' %} 
 
     <br>
+    <button type="submit" class="btn btn-success">Submit</button>
   </div>
 </div>
 

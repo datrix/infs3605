@@ -9,7 +9,9 @@ from student.models import student
 from apptType.models import apptType
 from django.contrib.auth.models import User
 import django_filters
-
+from datetimewidget.widgets import DateTimeWidget
+from django_filters import DateFromToRangeFilter
+from django_filters.widgets import RangeWidget
 
 class CalendarEvent(models.Model):
     """
@@ -27,12 +29,12 @@ class CalendarEvent(models.Model):
     url = models.CharField(max_length=9, verbose_name=_('URL'), null=True, blank=True)
     css_class = models.CharField(blank=False, max_length=20, verbose_name=_('Priority'),
                                  choices=CSS_CLASS_CHOICES, null = True, default = 'event-success')
-    start = models.DateTimeField(verbose_name=_('Start Time & Date'))
-    end = models.DateTimeField(verbose_name=_('End Time & Date'), null=True,
+    start = models.DateTimeField(verbose_name=_('Start Date & Time'))
+    end = models.DateTimeField(verbose_name=_('End Date & Time'), null=True,
                                blank=True)
-    zID = models.ForeignKey(student, on_delete = models.CASCADE, null=True)
+    zID = models.ForeignKey(student, related_name='studentzID', on_delete = models.CASCADE, null=True)
     notes = models.CharField(max_length = 400, null=True, blank=True, verbose_name=_('Notes'))
-    ugc = models.CharField(max_length = 100, null=True, verbose_name=_('Staff'))
+    ugc = models.CharField(max_length = 100, null=True, verbose_name=('Staff'))
     apptType = models.ForeignKey(apptType, on_delete = models.CASCADE, null=True, verbose_name=_('Appointment Type'))
 
     @property
@@ -56,5 +58,31 @@ class consultType(models.Model):
   title = models.ForeignKey(CalendarEvent, on_delete = models.CASCADE, null = True)
   apptType = models.ForeignKey(apptType)
   
+class ConsultationFilter(django_filters.FilterSet):
+    CSS_CLASS_CHOICES = (
+      ('', _('')),
+      ('event-success', _('Low')),
+      ('event-warning', _('Medium')),
+      ('event-important', _('High')),
+    )
+    title = django_filters.CharFilter(name='title', lookup_expr = 'icontains')
+    priority = django_filters.ChoiceFilter(name = 'css_class',choices=CSS_CLASS_CHOICES)
+    start= django_filters.DateTimeFromToRangeFilter(name = 'start')
+    zID = django_filters.ModelChoiceFilter(queryset=student.objects.all())
+    date_range = DateFromToRangeFilter(widget=RangeWidget(attrs={'placeholder': 'YYYY/MM/DD'}))
+    class Meta:
+      model = CalendarEvent
+      fields = ['title']
+      
+      dateTimeOptions = {
+       'daysOfWeekDisabled':[0,6],
+       'format':'dd/mm/yyyy HH:ii P',
+       'hoursDisabled':[0,9],
+       }
+      
+      widgets = {
+            #Use localization and bootstrap 3
+            'start': DateTimeWidget(attrs={'id':"yourdatetimeid"}, usel10n = True, bootstrap_version=3, options=dateTimeOptions),
+        }
   
   

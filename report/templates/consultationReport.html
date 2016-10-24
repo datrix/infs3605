@@ -1,6 +1,8 @@
 {% extends 'base1.html' %} 
 {% load render_table from django_tables2 %}
 {% load static %}
+{% load crispy_forms_tags %}
+
 
 
 {% block head %}
@@ -25,12 +27,26 @@
         <a href="< input type=button value=" Previous Page " onClick="javascript:history.go(-1); "  " " > </a>
       </button>  
     </div>
-    <div id="EditStudentButtons">
-      <button type="button" class="btn btn-default glyphicon glyphicon-print" <a href="< input type=button value="Print" onClick=" "> </a></button>
-    </div>
   </div>
 
 <br>
+<ul>
+    <div class="col-sm-10">
+
+        <div class="row">
+          <div class="col-md-8">
+            <form action="" method="get">
+              {{ filter.form|crispy }}
+              <input class="btn btn-primary" type="submit" value="Submit" />
+              <input class="btn btn-warning" type="reset" value="Reset" />
+              <a href="/report/consultations"><button type="button" class="btn btn-danger">Clear Filter</button></a>
+              <button class="btn btn-default glyphicon glyphicon-print" name = "pdf" type = "submit"></button>
+            </form>
+          </div>
+        </div>
+    </div>
+
+  </ul>
 <div>
     {% render_table all_consultations %} 
 </div>

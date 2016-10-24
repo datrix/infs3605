@@ -57,18 +57,18 @@
 					<ul class="nav navbar-nav" >
 						<li class = "{% block home_active %} {% endblock home_active %}"> <a href="/calendar/"> Home </a></li> <!-- active highlights the page you're on (faded tab)-->
 						<li class = "{% block student_active %} {% endblock student_active %}"> <a href="/student/" id="test"> Students </a></li>
-						<li> <a href="AlertsPage.html"> Alerts </a></li>
+						<li class = "{% block alerts_active %} {% endblock alerts_active %}"> <a href="/calendar/alerts">  Alerts </a></li>
 						<!-- drop down for reports -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="/report/consultations">By Appointments</a></li>
 								<li><a href="/report/students">By Students</a></li>
-								
 							</ul>	
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
+						<li id = "log_in_detail">You are logged in as: {{user.get_username}}</li> 
 						<li> <a href="{% url 'django.contrib.auth.views.logout'%}" id="logout" > Logout </a></li> 
 						{% csrf_token %}
 					</ul>
