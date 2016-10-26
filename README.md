@@ -3,14 +3,13 @@
 We have currently uploaded the repository onto Github. However, since we had difficulties with publishing the site, we decided it would be easier for you to run the system on a cloud IDE instead of installing python and 3rd party installs onto your PC.
 The following steps will help you view the system and also the code:
 
-
-
 Login to codeanywhere (codeanywhere.com) with:
 Username: *************************
 Password: ********
 
 Right click the richardbottom container directory and open up SSH Terminal
 Type in the following commands:
+    
     cd django/bin && source activate
     cd
     cd workspace/coordsys
