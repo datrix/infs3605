@@ -4,8 +4,9 @@ We have currently uploaded the repository onto Github. However, since we had dif
 The following steps will help you view the system and also the code:
 
 Login to codeanywhere (codeanywhere.com) with:
-Username: *************************
-Password: ********
+
+    Username: *************************
+    Password: ********
 
 Right click the richardbottom container directory and open up SSH Terminal
 Type in the following commands:
