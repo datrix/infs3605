@@ -25,8 +25,8 @@ urlpatterns = [
     url(r'^alerts$', views.alerts, name = 'alerts'),
     url(r'^newevent$', CreateEvent.as_view(success_url="/calendar/"), name='newevent' ),
     url(r'^newevent_newstudent$', CreateEventStudent.as_view(success_url="/calendar/"), name='newevent_newstudent' ),
-    url(r'^(?P<title>[\s\S]*)/edit/$', EditEvent.as_view(success_url="/calendar/"), name='editEvent'),
-    url(r'^(?P<title>[\s\S]*)/add_notes/$', AddNotes.as_view(success_url="/calendar/"), name='editEvent'),  
+    url(r'^(?P<title>[\s\S]*)/edit/$', EditEvent.as_view(), name='editEvent'),
+    url(r'^(?P<title>[\s\S]*)/add_notes/$', AddNotes.as_view(), name='editEvent'),  
     url(r'^(?P<title>[\s\S]*)/delete/$', DeleteEvent.as_view(success_url="/calendar/"), name='deleteEvent'),
     url(r'^(?P<title>[\s\S]*)$',views.eventTable, name = 'detail'),
 ]

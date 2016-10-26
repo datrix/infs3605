@@ -13,8 +13,8 @@ urlpatterns = [
     url(r'^(?P<zID>z[0-9]{7})/delete/$', DeleteStudent.as_view(success_url="/student/"), name='student-delete'),
     url(r'^(?P<zID>z[0-9]{7})/new_event/$', CreateEvent.as_view(success_url="/student/"), name='add-event'),
     url(r'^(?P<zID>z[0-9]{7})/courses_taken/$', views.courses_taken, name = 'courses_taken'),
-    url(r'^(?P<zID>z[0-9]{7})/courses_taken/update/$', UpdateCourses.as_view(success_url="/r'^(?P<zID>z[0-9]{7})/courses_taken/$"), name='update-courses'), 
-    url(r'^(?P<zID>z[0-9]{7})/courses_taken/addCourses/$', AddCourses.as_view(success_url="/student/"), name='add-courses'),
-    url(r'^(?P<zID>z[0-9]{7})/co-op_pref/$', CoopPlacementPref.as_view(success_url="/student/"), name='co-op-pref'),
+    url(r'^(?P<zID>z[0-9]{7})/courses_taken/(?P<pk>\d+)/update/$', UpdateCourses.as_view(success_url='courses_taken'), name='update-courses'), 
+    url(r'^(?P<zID>z[0-9]{7})/courses_taken/addCourses/$', AddCourses.as_view(success_url='courses_taken'), name='add-courses'),
+    url(r'^(?P<zID>z[0-9]{7})/co-op_pref/$', CoopPlacementPref.as_view(success_url='detail'), name='co-op-pref'),
     url(r'^(?P<zID>z[0-9]{7})/update_co-op_pref/$', UpdateCoopPlacement.as_view(), name='co-op-pref_update'),
 ]

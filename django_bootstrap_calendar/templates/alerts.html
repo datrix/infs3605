@@ -9,30 +9,31 @@
 {% endblock head %}
 
 {% block content %}
-<div class="span3" style="padding:30px">
-  <div class="col-md-12">
-    <div>
-      <h2>
-        High Priority
-      </h2>
-      <hr>
-      {% render_table high_priority %}
+<div class="span3 col-md-12" style="padding:0px;">
+  <div class="col-md-12" style="padding:0px;">
+    <div class="row" style="background-color: #e4e4e4; padding-left:70px; height:80px;">
+    <h1> Alerts </h1><br>
+  
+    </div>  
+  <div style="padding:0px 0px 0px 40px;">
+      <h3 style="padding: 0px 0px 10px 40px;">High Priority</h3>
+      <div id="priorityTable">
+        {% render_table high_priority %}
+      </div>
     </div>
     <br>
-    <div>
-      <h2>
-        Credit Transfers
-      </h2>
-      <hr>
-      {% render_table cred_trans %}
+    <div style="padding-left:40px;">
+      <h3 style="padding:0px 0px 10px 40px;">Credit Transfers</h3>  
+      <div id="creditTable">
+        {% render_table cred_trans %}
+      </div>
     </div>
     <br>
-    <div>
-      <h2>
-        International Exchange
-      </h2>
-      <hr>
-      {% render_table int_exch %}
+    <div style="padding-left:40px;">
+      <h3 style="padding: 0px 0px 10px 40px;">International Exchange</h3>
+      <div id="ieTable">
+        {% render_table int_exch %}
+      </div>
     </div>
     <br>
   </div>

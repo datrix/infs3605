@@ -10,13 +10,20 @@ from django_tables2 import RequestConfig, SingleTableView
 import reportlab
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
-from reportlab.platypus import Table, TableStyle, Image, Paragraph
+from reportlab.platypus import Table, TableStyle, Image, Paragraph, SimpleDocTemplate, Spacer
 from reportlab.pdfgen import canvas
 from reportlab.pdfgen.canvas import Canvas
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import cm
 from reportlab.lib.utils import ImageReader
 from reportlab.lib.colors import HexColor
+from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
+from reportlab.graphics.shapes import Drawing
+
+styles = getSampleStyleSheet()
+
+
+
 
 
 
@@ -28,12 +35,96 @@ from reportlab.lib.colors import HexColor
 def index(request):
   return HttpResponse("<h1>Report Homepage</h1>")
 
+
+
+
+
 @login_required(login_url='/login/')
 def consultations(request):
   queryset = CalendarEvent.objects.all().order_by('start')
   f = ConsultationFilter(request.GET, queryset=queryset)
   all_consultations = ConsultationTable(f.qs)
   RequestConfig(request, paginate={'per_page': 15}).configure(all_consultations)
+  
+  if 'pdf' in request.GET:
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="list_of_consultations.pdf"'
+      
+    doc = SimpleDocTemplate(response, rightMargin=2*cm, leftMargin=2*cm, topMargin=0*cm, bottomMargin=0)
+        
+    styles = getSampleStyleSheet()
+    styles.add(ParagraphStyle(
+        name="TableHeader", fontSize=11, alignment=TA_CENTER,
+        fontName="Helvetica"))    
+    styles.add(ParagraphStyle(
+        name="ParagraphTitle", fontSize=11, alignment=TA_JUSTIFY,
+        fontName="FreeSansBold"))
+    styles.add(ParagraphStyle(
+        name="Justify", alignment=TA_JUSTIFY, fontName="FreeSans"))
+
+    
+   
+    ########elements container########
+    elements = []
+    
+    ###########header###############
+    UNSWLogo = Image('report/images/pdfheader.PNG')
+    UNSWLogo.drawHeight = 4*cm
+    UNSWLogo.drawWidth = 21 *cm
+   
+    elements.append(UNSWLogo)
+    s = Spacer(1, 0.2*cm)
+    elements.append(s)
+    
+    #########title############
+    title = """Reports by Consultations"""
+    elements.append(Paragraph(title, styles['Heading2']))
+    
+    s = Spacer(1, 0.2*cm)
+    elements.append(s)
+    
+    #p = Paragraph('''<para align=center spaceb=3> TITLE''')
+       
+    ############table header############
+    header_Data = [[" Student ","Title","Staff", "Time"]]
+    t1 = Table(header_Data,[6*cm, 7*cm, 2.25*cm, 3*cm])
+    t1.setStyle(TableStyle([('LINEABOVE',(0,0),(-1,-1),1, colors.black),
+                            ('LINEBELOW',(0,0),(-1,-1),1, colors.black),
+                            ('FONTSIZE', (0,0), (-1,-1), 8),
+                            ('BACKGROUND',(0,0),(-1,-1), HexColor('#50A6C2'))]))
+    elements.append(t1)
+    s1 = Spacer(1, 0.1*cm)
+    elements.append(s1)
+    
+    
+    ######table data ##################
+    table_data = [[ str(my_data.zID), str(my_data.title), str(my_data.ugc), str(my_data.start) ] for my_data in f]
+    #'''str(my_data.apptType)'''
+    t = Table(table_data,[6*cm, 7*cm, 2.25*cm, 3*cm])
+    t.setStyle(TableStyle([('LINEABOVE',(0,0),(-1,-1),2, colors.white),
+                           ('LINEBELOW', (0,0), (-1,-1), 2, colors.white),
+                           ('ROWBACKGROUNDS', (0,0), (-1,-1), [HexColor('#e6f2ff'), HexColor('#c1e0ff')]),
+                           ('FONTSIZE', (0,0), (-1,-1), 8)]))
+    elements.append(t)
+    
+    
+    ############footer##################
+    '''pdffooter = Image('report/images/pdffooter.PNG')
+    pdffooter.drawHeight = 1.5*cm
+    pdffooter.drawWidth = 22 *cm
+    s1 = Spacer(1, 20*cm)
+    elements.append(s1)
+    elements.append(pdffooter)'''
+
+
+#    elements.append(t)
+    doc.build(elements)
+    return response
+  
+  
+    #data = [[str(my_data.title), str(my_data.zID), str(my_data.ugc), str(my_data.apptType)] for my_data in f]  
+    #data.append
+  
   
   
   return render(request, 'consultationReport.html', {'all_consultations': all_consultations, 'filter':f })
@@ -47,134 +138,92 @@ def students(request):
   RequestConfig(request, paginate = {'per_page':25}).configure(all_students)
   
       ################################################################
-
-    #styles = getSampleStyleSheet()
-    #style = styles["BodyText"]
-    
-  
-  
+ 
   if 'pdf' in request.GET:
     response = HttpResponse(content_type='application/pdf')
 #    today = date.today()
  #   filename = 'pdf_demo' + today.strftime('%Y-%m-%d')
     response['Content-Disposition'] = 'filename="list_of_students.pdf"'
   #  response.write(pdf)
+  
+    doc = SimpleDocTemplate(response, rightMargin=2*cm, leftMargin=2*cm, topMargin=0*cm, bottomMargin=0)
+        
+    styles = getSampleStyleSheet()
+    styles.add(ParagraphStyle(
+        name="TableHeader", fontSize=11, alignment=TA_CENTER,
+        fontName="Helvetica"))    
+    styles.add(ParagraphStyle(
+        name="ParagraphTitle", fontSize=11, alignment=TA_JUSTIFY,
+        fontName="FreeSansBold"))
+    styles.add(ParagraphStyle(
+        name="Justify", alignment=TA_JUSTIFY, fontName="FreeSans"))
 
-    width, height = A4
-  
-  
-    def coord(x,y,unit = 1):
-      x,y = x * unit, height - y * unit
-      return x,y
-    
-    p = canvas.Canvas(response) #leave this here
-    
-    elements = []
-    styles=getSampleStyleSheet()
-    styleN = styles["Normal"]
-    
-    ################### Heqader Text ######################
-    p.setFont('Helvetica', 18, leading=None)
-    p.drawCentredString(300, 762.5, "Reports")
-    UNSWLogo = ImageReader('http://web.maths.unsw.edu.au/~zdravkobotev/UNSW_logo.jpg')  
-    p.drawImage(UNSWLogo, 60, 750, width=158.01, height=40)
-    blackVerLine = ImageReader('report/images/bar.png')
-    p.drawImage(blackVerLine, 245, 745, width=0.2, height=45)
-    blackHorLine = ImageReader('http://www.circleoflifecoalition.org/wp-content/uploads/2014/09/horizontal-line-jpg-150x131.gif')
-    p.drawImage(blackHorLine, 50, 730, width=485, height=10)
-    
-    ######### Beginning details #########################
-    p.setFont('Helvetica', 8, leading=None)
-    p.drawString(70, 720, "Results for:")
-    p.drawString(120, 720, "Students")
-    
-    searchTerm = f
-    p.drawCentredString(150, 700, str(searchTerm))
-    
-     
-    
-#    title = [['zID', 'First Name', 'Last Name', 'Email', 'Degree Code', 'Start Year']]
-    
-
-  
-    #  ["zID", "First Name", "Last Name","Email", "Degree Code", "Start Year"],
-      
-      
-    #  [[str(my_data.zID), str(my_data.f_name), str(my_data.l_name), str(my_data.email),
-    #         str(my_data.degreeCode), str(my_data.startYear)] for my_data in f]]
-    # , took out this so we can make the table fit for now.
-    
-    ############## Column Headings ##############
-    col1 = Paragraph("<para align=center>zID</para>",styles['Normal'])
-    col2 = Paragraph("<para align=center>First Name</para>",styles['Normal'])
-    col3 = Paragraph("<para align=center>Last Name</para>",styles['Normal'])
-    col4 = Paragraph("<para align=center>Email</para>",styles['Normal'])
-    col5 = Paragraph("<para align=center>Degree</para>",styles['Normal'])
-    col6 = Paragraph("<para align=center>Start Year</para>",styles['Normal'])
-    
-    data = [[col1, col2, col3, col4, col5, col6]]
-    t1 = Table(data)
-    t1.setStyle(TableStyle([('LINEABOVE',(0,0),(-1,-1),2, colors.white),
-                          ('LINEBELOW', (0,0), (-1,-1), 2, colors.white),
-                          ('ROWBACKGROUNDS', (0,0), (-1,-1), [(colors.black), colors.black]),
-                          ('FONTSIZE', (0,0), (-1,-1), 8)]))
-    
-    t1.wrapOn(p, width, height)
-    t1.drawOn(p, *coord(2,15,cm))
-    
-    
-    
-    
-    ################## data ######################
-    data = [[str(my_data.zID), str(my_data.f_name), str(my_data.l_name), 
-    str(my_data.email), str(my_data.degreeCode), str(my_data.startYear)] for my_data in f]
-    t = Table(data)
-    t.setStyle(TableStyle([('LINEABOVE',(0,0),(-1,-1),2, colors.white),
-                           ('LINEBELOW', (0,0), (-1,-1), 2, colors.white),
-                           ('ROWBACKGROUNDS', (0,0), (-1,-1), [HexColor('#e7eff8'), HexColor('#f6f9fc')]),
-                           ('FONTSIZE', (0,0), (-1,-1), 8)]))
-    t.wrapOn(p, width, height)
-    t.drawOn(p, *coord(1.5,12,cm))
-    
-     ######count figure######
-    dataCount = len(data)      
-    p.setFont('Helvetica', 8, leading=None)    
-    p.drawCentredString(450, 720, "No. of Results:")
-    p.drawCentredString(500,720, str(dataCount))
-       
-    
     
    
-    ########## Footer ############
-    p.drawImage(blackHorLine, 50, 60, width=485, height=10)
-    p.setFont('Helvetica', 6, leading=None)
-    p.drawCentredString(100, 55, "UNSW UGC System Student Report")
+    ########elements container########
+    elements = []
     
-    page_number = p.getPageNumber()
-    p.drawCentredString(520, 55, "Page ")
-    p.drawCentredString(530, 55, str(page_number))
+    ###########header###############
+    UNSWLogo = Image('report/images/pdfheader.PNG')
+    UNSWLogo.drawHeight = 4*cm
+    UNSWLogo.drawWidth = 21 *cm
+   
+    elements.append(UNSWLogo)
+    s = Spacer(1, 0.2*cm)
+    elements.append(s)
+    
+    #########title############
+    title = """Reports by Students"""
+    elements.append(Paragraph(title, styles['Heading2']))
+    
+    s = Spacer(1, 0.2*cm)
+    elements.append(s)
+    
+    #p = Paragraph('''<para align=center spaceb=3> TITLE''')    
+    ############table header############
+    
+    
+    
+    header_Data = [["zID","First Name","Last Name", "Email","Degree","Start Year"]]
+    t1 = Table(header_Data,[1.5*cm,1.75*cm,2*cm,5*cm,7.75*cm,1.5*cm])
+    t1.setStyle(TableStyle([('LINEABOVE',(0,0),(-1,-1),1, colors.black),
+                            ('LINEBELOW',(0,0),(-1,-1),1, colors.black),
+                            ('FONTSIZE', (0,0), (-1,-1), 8),
+                            ('INNERGRID',(0,0),(-1,-1),2,colors.black),
+                            ('BACKGROUND',(0,0),(-1,-1), HexColor('#50A6C2'))]))
+    elements.append(t1)
+    s1 = Spacer(1, 0.1*cm)
+    elements.append(s1)
+    
+    
+    ######table data ##################
+    table_data = [[str(my_data.zID), str(my_data.f_name), str(my_data.l_name), 
+    str(my_data.email), str(my_data.degreeCode), str(my_data.startYear)] for my_data in f]
+    #'''str(my_data.apptType)'''
+    t = Table(table_data,[1.5*cm,1.75*cm,2*cm,5*cm,7.75*cm,1.5*cm])
+              #,[6*cm, 7*cm, 2.25*cm, 3*cm])
+    t.setStyle(TableStyle([('LINEABOVE',(0,0),(-1,-1),2, colors.white),
+                           ('LINEBELOW', (0,0), (-1,-1), 2, colors.white),
+                           ('ROWBACKGROUNDS', (0,0), (-1,-1), [HexColor('#e6f2ff'), HexColor('#c1e0ff')]),
+                           ('FONTSIZE', (0,0), (-1,-1), 8)]))
+    elements.append(t)
+    
+    
+    ############footer##################
+    '''pdffooter = Image('report/images/pdffooter.PNG')
+    pdffooter.drawHeight = 1.5*cm
+    pdffooter.drawWidth = 22 *cm
+    s1 = Spacer(1, 20*cm)
+    elements.append(s1)
+    elements.append(pdffooter)'''
 
-    
-          
-      # Close the PDF object cleanly, and we're done.
-    p.showPage()
-    p.save()
+
+#    elements.append(t)
+    doc.build(elements)
     return response
-  
+
   return render(request, 'studentReport.html', {'all_students': all_students, 'filter':f})
 
-#class students(TemplateView):
-#  template_name = "studentReport.html"
-#  
-#  def get_queryset(self, **kwargs):
-#    return student.objects.all()
-#   
-#  def get_context_data(self, **kwargs):
-#    context = super(students, self).get_context_data(**kwargs)
-#    table = StudentTable
-#    RequestConfig(self.request).configure(table)
-#    context['table'] = table
-#    return context
 
 
 

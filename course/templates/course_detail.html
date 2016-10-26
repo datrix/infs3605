@@ -1,0 +1,68 @@
+{% extends "base1.html" %} 
+{% load static %}
+
+{% block course_active %} active {% endblock course_active %}
+
+
+
+{% block content %}
+
+<div class="col-sm-offset-2 ">
+  <!--not sure why but this div restores harmony to the padding of this page-->
+</div> 
+<br>
+<div class="col-md-12">
+  <div class="container" id="AllEditStudentButtons" style="padding-left:16px">
+    <div id="EditStudentBackButton" >
+      <button type="button" class="btn btn-default glyphicon glyphicon-chevron-left" 
+        <a href="< input type=button value=" Previous Page " onClick="javascript:history.go(-1); "  " " > </a>
+      </button>  
+    </div>
+    <div id="EditStudentButtons">
+     <!--
+      <button type="button" class="btn btn-default" <a href="< input type=button value="Add Page" onClick="window.location.href='/student/{{Student.zID}}/courses_taken/addCourses/' "  " "> Add Course</a></button>
+      -->
+    </div>
+  </div>
+<div style="padding-left:16px">
+  <h3 >
+  {{courseDetail.courseCode}} - {{courseDetail.courseName}} 
+</h3>
+<hr>
+
+<table id="StudentInfo" >
+   <tr>
+     <td ><b>Lecturer In Charge:</b></td>
+     <td>{{courseDetail.LIC_name}}</td>
+   </tr>
+   <tr>
+     <td><b>Email: </b></td>
+     <td><a href="mailto:{{courseDetail.LIC_email}}">{{courseDetail.LIC_email}}</a></td>
+   </tr>
+   <tr>
+     <td><b>Phone:</b></td>
+     <td>{{courseDetail.LIC_phone}}</td>
+   </tr>
+  <tr>
+  <td><b>Units:</b></td>
+    <td>6.0</td>
+  </tr>
+  <tr>
+  <td><b>Further Course Details: </b></td>
+    <td> <a href="https://www.handbook.unsw.edu.au/undergraduate/courses/2017/{{courseDetail.courseCode}}.html">UNSW Handbook</a></td> 
+  </tr>
+  <tr>
+  <td><b></b></td>
+    <td><a href="https://www.business.unsw.edu.au/degrees-courses/course-outlines">Course Outline</a></td>
+  </tr>
+</table>
+  
+<br>
+  <br>
+  <br>
+  <br>
+  
+</div>
+
+
+{% endblock %}

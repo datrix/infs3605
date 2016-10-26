@@ -46,10 +46,10 @@ class student(models.Model):
   
 class enrol(models.Model):
   zID = models.ForeignKey(student, on_delete = models.CASCADE, null = True)
-  course = models.ForeignKey(course, related_name = 'course_old', null = True, unique=True)
-  grade = models.IntegerField(verbose_name=('Grade'), null = True)
+  course = models.ForeignKey(course, verbose_name=('Course'), null = True)
+  grade = models.IntegerField(verbose_name=('Mark'), null = True)
   sem_taken = models.CharField(verbose_name=('Semester'), choices=semester_dropdown, max_length = 20, null = True)
-  year = models.IntegerField(verbose_name=('year'), choices=year_dropdown, default=datetime.datetime.now().year)
+  year = models.IntegerField(verbose_name=('Year'), choices=year_dropdown, default=datetime.datetime.now().year)
   
   def __str__(enrol):
     return str(enrol.zID) + '------- Course: ' + str(enrol.course) 
@@ -60,12 +60,14 @@ class StudentFilter(django_filters.FilterSet):
   First_name = django_filters.CharFilter(name='f_name', lookup_expr = 'icontains')
   Last_name = django_filters.CharFilter(name='l_name', lookup_expr = 'icontains')
   email = django_filters.CharFilter(name='email', lookup_expr = 'icontains')
-  Degree_code = django_filters.ModelChoiceFilter(queryset=course.objects.all())
+  Degree_code = django_filters.ModelChoiceFilter(queryset=degree.objects.all(), name = 'degreeCode')
   Start_year = django_filters.RangeFilter(name='startYear')
   
   class Meta:
     model = student
-    fields = ['zID']
+    fields = ['zID', 'First_name', "Last_name",
+             'email', 'Degree_code',
+             'Start_year']
     
 class placementCompanies (models.Model):
   company = models.CharField(max_length = 50, verbose_name=('Company'), primary_key = True)

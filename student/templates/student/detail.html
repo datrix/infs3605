@@ -10,33 +10,33 @@
 </div> 
 <br>
 <div class="col-md-12">
-  <div class="container" id="AllEditStudentButtons">
+  <div class="container" id="AllEditStudentButtons" style="padding-left:16px">
     <div id="EditStudentBackButton" >
       <button type="button" class="btn btn-default glyphicon glyphicon-chevron-left" 
         <a href="< input type=button value=" Previous Page " onClick="javascript:history.go(-1); "  " " > </a>
       </button>  
     </div>
-    <div id="EditStudentButtons">
+    <div class="pull-right" id="EditStudentButtons">
       <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Consultation Page" onClick="window.location.href='/student/{{Student.zID}}/new_event/' "  " "> </a></button>
       <button type="button " class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Page" onClick="window.location.href='/student/{{Student.zID}}/edit'" ""> </a></button>
     </div>
   </div>
 
-<table id="NameZID">
-   <tr>
-     <td><h3>Name:</h3></td>
-     <td><h3>{{Student.f_name}} {{Student.l_name}}</h3></td>
-     <td></td>
-     <td><h3>zID:</h3></td>
-     <td><h3>{{Student.zID}}</h3></td>
-   </tr>
-</table>
+<h1>Student Details</h1>
 <hr>
 
 <table id="StudentInfo">
-       <tr>
+    <tr>
+  <td><b>Name: </b></td>
+  <td>{{Student.f_name}} {{Student.l_name}}</td>
+  </tr>   
+      <tr>
+  <td><b>zID:</b></td>
+  <td>{{Student.zID}}</td>
+  </tr>
+    <tr>
          <td><b>Email: </b></td>
-         <td>{{Student.email}}</td>
+         <td><a href="mailto:{{Student.email}}">{{Student.email}}</a> </td>
        </tr>
        <tr>
          <td><b>Degree: </b></td>
@@ -46,32 +46,53 @@
          <td><b>Year Commenced: </b></td>
          <td>{{Student.startYear}}</td>
        </tr>
+  <tr>
+  <td><b>Courses Taken: </b></td>
+    <td><a href = "/student/{{Student.zID}}/courses_taken ">
+       Previous and current courses undertaken</a></td>
+  </tr>
     </table>
     <br>
-    <hr>
-
-    <a href = "/student/{{Student.zID}}/courses_taken "><h4>
-       Previous and current courses undertaken
-      </h4></a>
-  
-
-    
+    <hr>   
 <div>
-  <h3>
-    All consultations:
-  </h3>
-
-  {% render_table student_consult %} 
+  <h3 style="padding-left:30px">All consultations:</h3>
+  <div id="renderedTable">
+    {% render_table student_consult %} 
+  </div>
+  
 </div> 
 <hr>
 
 {% if Student.degreeCode.degreeCode == 3584 or Student.degreeCode.degreeCode == 3964 %}
-<a href = "" ><h4>
-Co-op Placement Preferences 
- </h4></a>
 
-  {% render_table placement_pref %} 
-
+<!--<div class="col-md-12">
+  <div class="container" id="AllEditStudentButtons">
+    <div id="EditStudentBackButton" >
+      <button type="button" class="btn btn-default glyphicon glyphicon-chevron-left" 
+        <a href="< input type=button value=" Previous Page " onClick="javascript:history.go(-1); "  " " > </a>
+      </button>  
+    </div>
+    <div class="pull-right" id="EditStudentButtons">
+      <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Consultation Page" onClick="window.location.href='/student/{{Student.zID}}/new_event/' "  " "> </a></button>
+      <button type="button " class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Page" onClick="window.location.href='/student/{{Student.zID}}/edit'" ""> </a></button>
+    </div>
+  </div>
+-->
+<div>
+  <div class="container" id="CoopContainer">
+    <div id="CoopHeader">
+      <h3 class="pull-left">Co-op Placement Preferences:</h3>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default pull-right" <a href="< input type=button value="Add Notes" onClick="window.location.href='/student/{{Student.zID}}/co-op_pref/' "  " "> Add Placement Preference </a></button>
+    </div>
+  </div>
+  <div id="renderedTable">
+     {% render_table placement_pref %} 
+  </div> 
+</div>
+<hr>
+</div>
 {% endif %}
 {% endblock content %}
   

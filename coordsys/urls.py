@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^student/', include('student.urls'), name='student'),
     url(r'^consultation/', include('django_bootstrap_calendar.urls')),
-    url(r'^course/', include('course.urls')),
+    url(r'^courses/', include('course.urls')),
     url(r'^login/$', login, {'template_name': 'login.html'}),
     url(r'^logout/$', logout, {'next_page': '/login/'}),
     #url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),

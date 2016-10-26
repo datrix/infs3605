@@ -14,14 +14,30 @@
 {% endblock %}
 
 {% block content %}
-<form action="" method="post">{% csrf_token %}
+
+<div class="col-sm-offset-2 ">
+  <!--not sure why but this div restores harmony to the padding of this page-->
+</div> 
+<br>
+<div class="col-md-12">
+  <div class="container" id="AllEditStudentButtons">
+    <div id="EditStudentBackButton" >
+      <button type="button" class="btn btn-default glyphicon glyphicon-chevron-left" 
+        <a href="< input type=button value=" Previous Page " onClick="javascript:history.go(-1); "  " " > </a>
+      </button>  
+    </div>
+    
+  </div>
 <h2>
-   Edit {{student.zID}}  
+   Edit {{student.zID}} Course Enrolment 
   </h2> 
+<hr>
   
-  {{ form | crispy }}
-    <input type="submit" value="Update" />
-    <input type="button" onclick="javascript:history.go(-1);" value="Cancel">
+
+<form action="" method="post">{% csrf_token %}
+
+  {% include 'form_template.html' %}
+   
 </form>
 
 {% endblock content %} 

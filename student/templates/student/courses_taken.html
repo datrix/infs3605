@@ -21,8 +21,8 @@
       </button>  
     </div>
     <div id="EditStudentButtons">
-      <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Page" onClick="window.location.href='/student/{{Student.zID}}/courses_taken/addCourses/' "  " "> </a></button>
-      <button type="button " class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Page" onClick="window.location.href='/student/{{Student.zID}}/courses_taken/update/" ""> </a></button>
+      <button type="button" class="btn btn-default" <a href="< input type=button value="Add Page" onClick="window.location.href='/student/{{Student.zID}}/courses_taken/addCourses/' "  " "> Add Course</a></button>
+      
     </div>
   </div>
 
@@ -47,8 +47,14 @@
          <td><b>Overall WAM: </b></td>
          <td> {{all_grades|floatformat:2}} </td>
        </tr>
+       <tr>
+         <td><b>Academic Standing:</b></td>
+         <td> {{standing}}</td>  
+       </tr>
     </table>
 <hr>
 
-{% render_table course_taken %}
+<div id="renderedTable">
+  {% render_table course_taken %}
+</div>
 {% endblock %}

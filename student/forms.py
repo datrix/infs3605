@@ -21,12 +21,15 @@ class StudentForm(forms.ModelForm):
   
   def __init__(self, *args, **kwargs):
     super(StudentForm, self).__init__(*args, **kwargs)
-    self.helper = FormHelper()
+    self.helper = FormHelper(form=self)
     self.helper.layout = Layout(
         Div('zID', 'f_name', 'l_name'),
         'email',
         'startYear',
-        'degreeCode'  
+        'degreeCode',
+        ButtonHolder(
+          Submit('submit', 'Submit', css_class="btn btn-success"),
+       )
     )
     
   class Meta: #information about the class
@@ -55,7 +58,33 @@ class EnrolForm (forms.ModelForm):
         css_class = 'row'
       ),
        ButtonHolder(
-      Submit('submit', 'Submit', css_class='button white')
+      Submit('submit', 'Save', css_class='button white'),
+      Submit('submit', 'Save and Add Another', css_class='btn-default', onclick="window.location.reload()")
+       )
+    )
+    
+class UpdateEnrolForm (forms.ModelForm):  
+  class Meta: 
+    model = enrol 
+    fields = [ 'course', 'sem_taken', 'year', 'grade']
+  
+  #zID = forms.CharField(disabled=True)
+  
+  def __init__(self, *args, **kwargs):
+    super(UpdateEnrolForm, self).__init__(*args, **kwargs)
+    self.helper = FormHelper()
+    self.helper.layout = Layout(
+      Div('zID'),
+      Div(
+        Div('course', css_class="col-sm-5"),
+        Div('sem_taken', css_class="col-sm-3"),
+        Div('year', css_class="col-sm-2"),
+        Div('grade', css_class="col-sm-2"),
+        css_class = 'row'
+      ),
+       ButtonHolder(
+      Submit('submit', 'Update', css_class='button white'),
+      Button('cancel', 'Cancel', css_class='btn-default', onclick="window.location.back()")
        )
     )
  

@@ -5,7 +5,7 @@ from .models import student, StudentFilter, enrol, coopPlacement
 from django.conf import settings
 from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import StudentForm, EnrolForm, coopPlacementForm
+from .forms import StudentForm, EnrolForm, coopPlacementForm, UpdateEnrolForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django_bootstrap_calendar.models import CalendarEvent
@@ -37,9 +37,21 @@ def detail(request, zID):
 
 def courses_taken(request, zID):
   Student = get_object_or_404(student, pk = zID)
-  course_taken = CoursesTakenTable(enrol.objects.filter(zID = zID))
+  course_taken = CoursesTakenTable(enrol.objects.filter(zID = zID).order_by("sem_taken"))
   all_grades = enrol.objects.filter(zID = zID).aggregate(Avg('grade')).values()[0]
-  return render(request, 'student/courses_taken.html', {'Student':Student, 'course_taken': course_taken, 'all_grades': all_grades})
+  if (all_grades is None):
+    standing = "No courses completed"
+  elif all_grades > 0 and all_grades < 50:
+    standing = "Fail"
+  elif all_grades >= 50 and all_grades < 65:
+    standing = "Pass"
+  elif all_grades >= 65 and all_grades <75:
+    standing = "Credit"
+  elif all_grades >= 75 and all_grades < 85:
+    standing = "Distinction"
+  elif all_grades >= 85:
+    standing = "High Distinction"
+  return render(request, 'student/courses_taken.html', {'Student':Student, 'course_taken': course_taken, 'all_grades': all_grades, 'standing': standing})
 
 class AddCourses(LoginRequiredMixin, CreateView):
   login_url = '/login/' 
@@ -50,15 +62,26 @@ class AddCourses(LoginRequiredMixin, CreateView):
   def get_initial(self):
     return{"zID":self.kwargs.get("zID")}
   
+    #reverse to previous URL
+  def get_success_url(self):
+    zID = self.kwargs['zID']
+    return reverse('courses_taken', kwargs={'zID': zID})
+  
 class UpdateCourses(LoginRequiredMixin, UpdateView):
   login_url = '/login/'
-  fields = ['zID', 'course', 'grade', 'sem_taken']
+  model = enrol
+  form_class = UpdateEnrolForm
   template_name = 'student/editEnrolment.html'
   
   def get_object(self, queryset=None):
-    enrolObj = enrol.objects.get(zID=self.kwargs['zID'])
+    enrolObj = enrol.objects.get(pk=self.kwargs['pk'])
     return enrolObj
-      
+  
+  #reverse to previous URL
+  def get_success_url(self):
+    zID = self.kwargs['zID']
+    return reverse('courses_taken', kwargs={'zID': zID})
+  
 def get_event (request, calendar):
     return calendar.event_set.all()
   
@@ -90,7 +113,7 @@ class DeleteStudent(LoginRequiredMixin, DeleteView):
   
 def student_list(request):
   student = StudentDetailTable(request.GET, queryset=student.objects.all())
-  RequestConfig(request, paginate = {'per_page':25}).configure(student)
+  RequestConfig(request, paginate = {'per_page':15}).configure(student)
   return render(request, 'student/student_filter.html', {'filter': student})
 
 class CoopPlacementPref(LoginRequiredMixin, CreateView):
@@ -101,6 +124,11 @@ class CoopPlacementPref(LoginRequiredMixin, CreateView):
   
   def get_initial(self):
     return{"zID":self.kwargs.get("zID")}
+  
+    #reverse to previous URL
+  def get_success_url(self):
+    zID = self.kwargs['zID']
+    return reverse('detail', kwargs={'zID': zID})
 
 class UpdateCoopPlacement(LoginRequiredMixin, UpdateView):
   login_url = '/login/'

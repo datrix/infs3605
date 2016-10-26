@@ -13,13 +13,17 @@
 {% endblock %}
 
 {% block content %}
-<form action="" method="post">{% csrf_token %}
-<h2>
-   Edit {{student.zID}}  
-  </h2> 
-  {{ form | crispy }}
-    <input type="submit" value="Update" />
-    <input type="button" onclick="javascript:history.go(-1);" value="Cancel">
-</form>
+<h1>Edit {{student.zID}}</h1> 
+<div class="span3">
+  <div class="col-md-6">
+    <hr>
+    <form action="" method="post">{% csrf_token %}
+      {{ form | crispy }}
+        <input type="submit" value="Update" class="btn btn-success"/>
+        <input type="button" onclick="javascript:history.go(-1);" value="Cancel" class="btn btn-danger">
+    </form>
+    <br>
+  </div>
+</div>
 
 {% endblock content %} 

@@ -2,6 +2,7 @@ html, body{
 	/*height: 100px;*/
 	margin: 0px;
 	padding: 0px;
+	height:100%;
 }
 
 
@@ -22,6 +23,25 @@ html, body{
 .top {
 	min-height: calc(100vh - 89px);
 }
+
+
+#alertBadgee{
+	border-radius: 10px;
+	background-color: #5a8baa;
+	color: #FFCA00	;
+}
+
+
+/*.rapper{
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -142px;
+}
+
+.footer, .push {
+    height: 142px;
+}*/
 
 /* ------ BANNER CSS ----- */
 #banner{
@@ -85,6 +105,7 @@ html, body{
     width: 300x;
     text-align: center;
 		padding-top: 15px;
+		padding-right: 1cm;
 }
 
 /* main page content */
@@ -114,31 +135,33 @@ html, body{
     border: 0;
     box-shadow: none;
     border-left: solid 1px #ccc; 
-	background-color: #489dd2;
+	  background-color: #489dd2;
     color: ;
 }	
 
 #sidebar-toggle{
-	background-color: #2196DF;
+	background-color: #166696;
 	border: 100px #1e87c8 solid;
 	color: white;
 	border-radius: 0px;
 	border: 0px; 
-	padding: 5px;
+	padding:5px;
+	border-left:solid 2px #135a85;
+
 }
 
 #sidebar-toggle:hover{
 	background-color: #4eabe4;
 	color: #0c3953;	
+	
 
 }
 
 #rowOne{
 	background-color:#E6E6E6;
-	height: 45px;
+	height: 0px;
 	width: 100%;
 	margin: 0px;
-	padding-top: 6px;	
 }
 
 
@@ -147,6 +170,12 @@ html, body{
 	margin-left: 0px;
 	margin-right: 0px;
 }
+
+#renderedTable, #priorityTable, #creditTable, #ieTable{
+	padding-left:40px; 
+	padding-right:40px
+}
+
 
 
 
@@ -161,6 +190,7 @@ form {
     background-color: #e7eff8; 
     border: #e7eff8 solid;
 }
+
 
 
 td{
@@ -190,19 +220,60 @@ td{
   padding-left:0;
 }
 
+#ConsultInfoAddNotes, #StudentInfoAddNotes{
+	padding-left: 40px;
+	font-size:11pt;
+}
+
+#ConsultPrint{
+	background:white;
+	border: none;
+	padding:0;
+	padding-left: 5px;
+	position: top;
+}
+
+#ConsultInfoAddNotes td:nth-child(1) {  
+	padding-left:0;
+	width: 100px;
+}
+#ConsultInfoAddNotes td:nth-child(2) {  
+  padding-left:0;
+	width: 400px;
+}
+
+#StudentInfoAddNotes td:nth-child(2) {  
+  padding-left:0;
+	width: 400px;
+}
+
+#CreateFollowUpButt{
+	font-family: sans-serif;
+	text-align: left;
+}
 
 #editNotes {
 	padding-left:40px;
 }
 
-#AllEditStudentButtons container button{
-    display: inline-block;
+#AllEditStudentButtons, #CoopContainer{
+	display: inline-block;
+	text-align:left;
+	padding-left:30px;
 }
 #EditStudentBackButton button{
     float:left;
+		
 }
 #EditStudentButtons{
-    float:right;
+	float:right !important;
+	display:inline !important;
+	padding: 0;
+	text-align:right;
+}
+
+#CoopHeader{
+	float:left;
 }
 /*#EditStudentBackButton button{
 	float: left;
@@ -225,7 +296,6 @@ footer{
 
 #footer {
 	bottom: 0px;	
-
 }
 
 #footerlinks li{
@@ -243,4 +313,25 @@ footer{
 	padding: 15px 0px 0px 80px;
 	color: white;
 	font-weight: bold;
+}
+.inlineTable {
+	display: inline-block;
+	float:left;
+}
+
+#AddNotesTextBox form{
+	background:white;
+	border-color:white;
+}
+
+#StudentsPage{
+	 position: relative;
+}
+
+#StudentTable {
+  margin: 0 auto 0 auto !important;
+} 
+
+#ConsultInfoAddNotes{
+	padding-left:40px;
 }

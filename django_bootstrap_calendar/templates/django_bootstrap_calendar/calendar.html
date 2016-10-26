@@ -9,13 +9,13 @@
 		<ul class="sidebar-nav">
 			<div id="AlertSidebar"> Alerts </div>
 			<li>
-				<a href="#"> <span class="glyphicon glyphicon-exclamation-sign"> </span> High Priority Follow-up <span class="badge">{{ high_priority_count }} </span> </a>
+				<a href="/calendar/alerts#priorityTable"> <span class="glyphicon glyphicon-exclamation-sign"> </span> High Priority Follow-up <span class="badge" id="alertBadgee" style="margin-left:50px;">{{ high_priority_count }} </span> </a>
 			</li>
 			<li>
-				<a href="#"> <span class="glyphicon glyphicon-transfer"></span> Credit Transfers <span class="badge">{{ cred_trans_count }} </span> </a> 
+				<a href="/calendar/alerts#creditTable"> <span class="glyphicon glyphicon-transfer"></span> Credit Transfers <span class="badge" id="alertBadgee"  style="margin-left:79px;">{{ cred_trans_count }} </span> </a> 
 			</li>
 			<li>
-				<a href="#"> <span class="glyphicon glyphicon-globe"></span> International Exchange <span class="badge">{{ int_exch_count }} </span> </a>
+				<a href="/calendar/alerts#ieTable"> <span class="glyphicon glyphicon-globe"></span> International Exchange <span class="badge" id="alertBadgee" style="margin-left:48px;">{{ int_exch_count }} </span> </a>
 			</li>
 		</ul>
 		<div id="sidebar-today"> Today's Appointments</div>
@@ -56,12 +56,12 @@
 		<div class="container-fluid" style="padding: 0px;">
 			<!-- search bar etc. -->
 			<div class="row" id="rowOne">
-				<div class="col-lg-4" style="padding-left:0px;">
+				<div class="col-lg-4" style="padding:0px;">
 					<!-- for making button left -->
 					<a href="#" class="btn btn-default" id="sidebar-toggle"> <span class="glyphicon glyphicon-menu-left"> </span> </a>
 				</div>
 
-				<div class="col-lg-8" id="search-input">
+				<!--<div class="col-lg-8" id="search-input">
 					<div class="input-group col-md-12">
 						<input type="text" class="form-control input-md" placeholder="Search for a student...">
 						<span class="input-group-btn">
@@ -69,7 +69,7 @@
                     <i class="glyphicon glyphicon-search"></i> 
                   </button> 
                 </div>
-              </div>
+              </div> -->
             </div>         
 
                 <div class="row" style="padding-left: 10px;">

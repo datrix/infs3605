@@ -11,8 +11,10 @@
 
 {% block content %}
 <br>
-  <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left" <a href = "< input type=button value="Previous Page" onClick="javascript:history.go(-1);"  ""> </a>
-    </button>
+<div style="padding-left:35px">
+  <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left"<a href = "< input type=button value="Previous Page"  onClick="javascript:history.go(-1);"  ""> </a>
+  </button>
+</div>
 <div class = "span3">
  <h1 style="padding-left:15px">
    Create Student
@@ -26,7 +28,6 @@
     {% include 'form_template.html' %} 
 
     <br>
-    <button type="submit" class="btn btn-success">Submit</button>
   </div>
 </div>
 

@@ -15,8 +15,8 @@
 {% block content %}
 <form action="" method="post">{% csrf_token %}
     <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm" />
-    <input type="button" value="Cancel" onClick="javascript:history.go(-1);"/>
+    <input type="submit" value="Confirm" class="btn btn-default"/>
+    <input type="button" value="Cancel" onClick="javascript:history.go(-1);" class="btn btn-default"/>
 </form>
 
 {% endblock content %} 

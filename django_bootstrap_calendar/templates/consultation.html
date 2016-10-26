@@ -5,84 +5,99 @@
 {% block content %}
 
 
-<div class="col-sm-offset-2 ">
-  <!--not sure why but this div restores harmony to the padding of this page-->
-</div> 
+<!--<div class="col-sm-offset-2 ">
+  <!--not sure why but this div restores harmony to the padding of this page
+</div> -->
 <br>
 
 <div class="container" id="AllEditStudentButtons">
-  <div id="EditStudentBackButton" >
+  <div class="pull-left" style="padding-left:16px" id="EditStudentBackButton" >
     <button type="button" class = "btn btn-default glyphicon glyphicon-chevron-left" <a href = "< input type=button value="Previous Page" onClick="javascript:history.go(-1);"  ""> </a>
-    </button>  
-
+    </button>
   </div>
 
-  <div id="EditStudentButtons">
-    <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Consultation Page" onClick="window.location.href='/student/{{Consultation.zID.zID}}/new_event/' "  " "> </a></button>
-    <button type="button" class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/edit/'"  ""> </a>
-    </button>
-    <button type="button" class = "btn btn-default glyphicon glyphicon-trash" <a href = "< input type=button value="Delete Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/delete/'"  ""> </a>
-    </button>
+  <div class="inline pull-right" id="EditStudentButtons">
+    <span id=CreateFollowUpButt>
+      <button type="button" class="btn btn-default glyphicon glyphicon-plus" <a href="< input type=button value="Add Consultation Page" style="font-family: Arial; font-weight:bold" onClick="window.location.href='/student/{{Consultation.zID.zID}}/new_event/' "  " "> Create follow up </a></button>
+    </span>    
+    <span>
+      <button type="button" class = "btn btn-default glyphicon glyphicon-edit" <a href = "< input type=button value="Edit Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/edit/'"  ""> </a>
+      </button> 
+    </span>
+    <span class="pull-right" style="vertical-align: middle;">
+      <form id="ConsultPrint" action="" method="get">
+        <button class="btn btn-default glyphicon glyphicon-print" name = "pdf" type = "submit"></button>
+      </form>
+    </span>
+    <span>
+      <button type="button" class = "btn btn-default glyphicon glyphicon-trash" <a href = "< input type=button value="Delete Consultation" onClick="window.location.href='/calendar/{{Consultation.title}}/delete/'"  ""> </a>
+      </button>
+    </span>
   </div>
 </div>
-<h1>Consultation Details</h1>
-<hr>
-  <!--<table id="ConsultationHeader" style="font-size:14pt">
-<tr>
-    <td><b>Title: </b></td>
-    <td>{{Consultation.title}}</td>
-  </tr>
-  <tr>
-    <td><b>zID and name:</b></td>
-    <td>{{Consultation.zID}}</td>
-  </tr> 
-</table>
-<hr>-->
 
-<table id="StudentInfo" >
-   <tr>
-     <td ><b>Details of consultation:</b></td>
-     <td>{{Consultation.title}}</td>
-   </tr>
-   <tr>
-     <td><b>Student ID and name: </b></td>
-     <td>{{Consultation.zID}}</td>
-   </tr>
-   <tr>
-     <td><b>Start time:</b></td>
-     <td>{{Consultation.start}}</td>
-   </tr>
+<div class="col-md-12">
+  <h1 style="padding-left:30px">Consultation Details</h1>
+  <hr>
+    <!--<table id="ConsultationHeader" style="font-size:14pt">
+  <tr>
+      <td><b>Title: </b></td>
+      <td>{{Consultation.title}}</td>
+    </tr>
     <tr>
-       <td><b>End time:</b></td>
-       <td>{{Consultation.end}}</td>
-     </tr>
-  <tr>
-     <td><b>Appointment Type:</b></td>
-     <td>{{Consultation.apptType}}</td>
-   </tr>
-  <tr>
-     <td><b>Priority:</b></td>
-     <td>{{Consultation.css_class}}</td>
-   </tr>
-  <tr>
-    <td><b>Undergraduate Coordinator:</b></td>
-  <td> {{Consultation.ugc}} </td>
-  </tr>
-  <tr>
-    <td><b>Notes:</b></td>
-  <td> {{Consultation.notes}} </td>
-    
-  </tr>
- <tr>
-  <td></td>
-   <td> </td>
-  </tr> 
-</table>
-    <br>
-<div id="editNotes">
-  <button type="button" class="btn btn-default" <a href="< input type=button value="Add Notes" onClick="window.location.href='/calendar/{{Consultation.title}}/add_notes/' "  " ">Edit Notes </a></button>
-</div>
-<hr>
+      <td><b>zID and name:</b></td>
+      <td>{{Consultation.zID}}</td>
+    </tr> 
+  </table>
+  <hr>-->
 
+  <table id="StudentInfo" >
+     <tr>
+       <td ><b>Consultation Title:</b></td>
+       <td>{{Consultation.title}}</td>
+     </tr>
+     <tr>
+       <td><b>Student ID and name: </b></td>
+       <td><a href="/student/{{Consultation.zID.zID}}">{{Consultation.zID}} </a></td>
+     </tr>
+     <tr>
+       <td><b>Start time:</b></td>
+       <td>{{Consultation.start}}</td>
+     </tr>
+      <tr>
+         <td><b>End time:</b></td>
+         <td>{{Consultation.end}}</td>
+       </tr>
+    <tr>
+       <td><b>Appointment Type:</b></td>
+       <td>{{Consultation.apptType}}</td>
+     </tr>
+    <tr>
+       <td><b>Priority:</b></td>
+       <td>{{Consultation.css_class}}</td>
+     </tr>
+    <tr>
+      <td><b>Undergraduate Coordinator:</b></td>
+    <td> {{Consultation.ugc}} </td>
+    </tr>
+    <tr>
+      <td><b>Notes:</b></td>
+    <td> {{Consultation.notes}} </td>
+
+    </tr>
+   <tr>
+    <td></td>
+     <td> </td>
+    </tr> 
+  </table>
+      <br>
+  <div id="editNotes">
+    <button type="button" class="btn btn-default" <a href="< input type=button value="Add Notes" onClick="window.location.href='/calendar/{{Consultation.title}}/add_notes/' "  " ">Edit Notes </a></button>
+    {% if Consultation.apptType.apptType == 'Credit Transfer' %}
+    <button type="button" class="btn btn-default" <a href="< input type=button value="Add Notes" onClick="window.location.href='/student/{{Consultation.zID.zID}}/courses_taken/' "  " ">Perform Credit Transfer </a></button>
+    {% endif %}
+  </div>
+  <hr>
+</div>
 
 {% endblock %}

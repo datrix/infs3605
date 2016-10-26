@@ -1,0 +1,41 @@
+{% extends "base1.html" %} 
+{% load static %}
+{% load crispy_forms_tags %}}
+{% load render_table from django_tables2 %}
+
+
+{% block course_active %} active {% endblock course_active %}
+
+
+
+{% block content %}
+
+<div class="col-sm-offset-2 ">
+  <!--not sure why but this div restores harmony to the padding of this page-->
+</div> 
+<div class="col-md-12" style="padding:0px;">
+  <div style="background-color: #e4e4e4; height:80px; margin-bottom:20px;">
+        <h1 style="padding-top:20px; padding-left:100px; border-top:0px; margin-top:0px;">Information Systems Courses</h1>
+
+  </div>
+  <div class = "row" style="background-color:#D3E2F2; margin: 0px 40px 20px 40px;">
+    <ul>
+      <div class="col-md-6" style="padding-top:20px;">
+        <form action="" method="get">
+          {{ filter.form|crispy }}
+          <div class="pull-right">
+            <input class="btn btn-primary" type="submit" value="Submit" />
+            <input class="btn btn-warning" type="reset" value="Reset" />
+            <a href="/courses"><button type="button" class="btn btn-danger">Clear Filter</button></a>
+          </div>
+          <br><br>
+        </form>
+      </div>
+    </ul>
+    <div id=renderedTable>
+      {% render_table course_table %}  
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -67,9 +67,9 @@ class ConsultationFilter(django_filters.FilterSet):
     )
     title = django_filters.CharFilter(name='title', lookup_expr = 'icontains')
     priority = django_filters.ChoiceFilter(name = 'css_class',choices=CSS_CLASS_CHOICES)
-    start= django_filters.DateTimeFromToRangeFilter(name = 'start')
+    start = DateFromToRangeFilter(widget=RangeWidget(attrs={'placeholder': 'DD/MM/YYYY'}))
     zID = django_filters.ModelChoiceFilter(queryset=student.objects.all())
-    date_range = DateFromToRangeFilter(widget=RangeWidget(attrs={'placeholder': 'YYYY/MM/DD'}))
+
     class Meta:
       model = CalendarEvent
       fields = ['title']
