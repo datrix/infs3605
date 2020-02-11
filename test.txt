@@ -1,6 +1,6 @@
 chardet==2.0.1
 colorama==0.2.5
-Django==1.10
+Django==1.11.28
 django-annoying==0.10.1
 django-bootstrap-calendar==0.1.0
 django-bootstrap3==7.0.1
