@@ -11,7 +11,7 @@ django-filter==0.15.0
 django-scheduler==0.8
 enum34==1.0.4
 gyp==0.1
-html5lib==0.999
+html5lib==0.999999999
 icalendar==3.10
 jsmin==2.2.1
 pathlib==1.0.1
